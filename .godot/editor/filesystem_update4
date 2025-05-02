@@ -1,8 +1,0 @@
-res://player/player.tscn
-res://player/input/move.tres
-res://player/input/regular_mode.tres
-res://player/player_body.gd
-res://locations/sandbox.tscn
-res://player/input/rotate.tres
-res://camera/player_camera/player_camera.gd
-res://camera/player_camera/player_camera.tscn

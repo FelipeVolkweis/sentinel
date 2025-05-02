@@ -1,3 +1,0 @@
-GUIDEAction
-GUIDEMappingContext
-GUIDEActionMapping
