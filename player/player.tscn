@@ -1,9 +1,18 @@
-[gd_scene load_steps=8 format=3 uid="uid://yxpgihmcjafi"]
+[gd_scene load_steps=17 format=3 uid="uid://yxpgihmcjafi"]
 
 [ext_resource type="PackedScene" uid="uid://c3xrmu4sfxxc1" path="res://camera/player_camera/player_camera.tscn" id="1_oul6g"]
-[ext_resource type="Script" uid="uid://cd8brgmo2vxcr" path="res://player/player.gd" id="1_rkbax"]
-[ext_resource type="Resource" uid="uid://bhk5uuv3bycxi" path="res://player/input/regular_mode.tres" id="2_yw30f"]
-[ext_resource type="Resource" uid="uid://bc4inf70xcykp" path="res://camera/player_camera/rotate_player_camera.tres" id="6_g6k8r"]
+[ext_resource type="Script" uid="uid://f2h0dob7kybr" path="res://player/player.gd" id="1_yllr7"]
+[ext_resource type="Script" uid="uid://j8b0mb6i5g6l" path="res://player/player_body.gd" id="1_yw30f"]
+[ext_resource type="Resource" uid="uid://def3mva7m32tk" path="res://player/input/regular_3rd_person.tres" id="2_rgyib"]
+[ext_resource type="Resource" uid="uid://5h8t3ewrtxnk" path="res://camera/player_camera/rotate_player_camera.tres" id="6_g6k8r"]
+[ext_resource type="Script" uid="uid://cht2opmjrsbmh" path="res://player/fsm/airborne_state.gd" id="10_kb6p2"]
+[ext_resource type="Script" uid="uid://165alwutj3eq" path="res://player/fsm/grounded_state.gd" id="11_wodsf"]
+[ext_resource type="Script" uid="uid://b7igcdelj505" path="res://player/fsm/running_state.gd" id="12_32hag"]
+[ext_resource type="Script" uid="uid://bmi5jhgumr7xo" path="res://player/fsm/idling_state.gd" id="13_tqiix"]
+[ext_resource type="Script" uid="uid://op1an1e6733f" path="res://player/root_fsm.gd" id="14_kb6p2"]
+[ext_resource type="Resource" uid="uid://f6mn5xbrow4b" path="res://player/input/jump_input.tres" id="16_g4c7l"]
+[ext_resource type="Resource" uid="uid://c3tqa78qbfpns" path="res://player/input/move_input.tres" id="17_knn7v"]
+[ext_resource type="Resource" uid="uid://c6sjcmj2xla6p" path="res://player/input/look_input.tres" id="18_7pqkx"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kqu6x"]
 
@@ -12,10 +21,14 @@
 [sub_resource type="PrismMesh" id="PrismMesh_g6k8r"]
 
 [node name="Player" type="Node3D"]
+script = ExtResource("1_yllr7")
+regular_3rd_person = ExtResource("2_rgyib")
 
 [node name="PlayerBody" type="CharacterBody3D" parent="."]
-script = ExtResource("1_rkbax")
-regular_mode = ExtResource("2_yw30f")
+script = ExtResource("1_yw30f")
+jump_input = ExtResource("16_g4c7l")
+move_input = ExtResource("17_knn7v")
+look_input = ExtResource("18_7pqkx")
 
 [node name="CapsuleShape3D" type="CollisionShape3D" parent="PlayerBody"]
 shape = SubResource("CapsuleShape3D_kqu6x")
@@ -30,3 +43,25 @@ mesh = SubResource("PrismMesh_g6k8r")
 [node name="PlayerCamera" parent="PlayerBody" node_paths=PackedStringArray("follow") instance=ExtResource("1_oul6g")]
 follow = NodePath("../..")
 rotate_player_camera = ExtResource("6_g6k8r")
+
+[node name="RootFSM" type="Node" parent="PlayerBody" node_paths=PackedStringArray("initial_state", "player")]
+script = ExtResource("14_kb6p2")
+initial_state = NodePath("GroundedState")
+player = NodePath("..")
+
+[node name="AirborneState" type="Node" parent="PlayerBody/RootFSM" node_paths=PackedStringArray("player")]
+script = ExtResource("10_kb6p2")
+player = NodePath("../..")
+
+[node name="GroundedState" type="Node" parent="PlayerBody/RootFSM" node_paths=PackedStringArray("initial_state", "player")]
+script = ExtResource("11_wodsf")
+initial_state = NodePath("IdlingState")
+player = NodePath("../..")
+
+[node name="RunningState" type="Node" parent="PlayerBody/RootFSM/GroundedState" node_paths=PackedStringArray("player")]
+script = ExtResource("12_32hag")
+player = NodePath("../../..")
+
+[node name="IdlingState" type="Node" parent="PlayerBody/RootFSM/GroundedState" node_paths=PackedStringArray("player")]
+script = ExtResource("13_tqiix")
+player = NodePath("../../..")

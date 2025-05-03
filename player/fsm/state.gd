@@ -1,15 +1,19 @@
 class_name State
-extends Node
+extends FSM
 
-var player: Player = null
+var parent_fsm: FSM
 
-func handle_input(input: GUIDEAction):
+
+func update(delta: float) -> void:
 	pass
+
+
+func execute(delta: float) -> void:
+	print("On ", name)
+	update(delta)
+	if _current_state:
+		_current_state.update(delta)
 	
-
-func update(delta: float):
-	pass
-
 
 func enter():
 	pass
@@ -17,4 +21,3 @@ func enter():
 
 func exit():
 	pass
-	
