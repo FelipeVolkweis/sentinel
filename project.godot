@@ -22,3 +22,7 @@ GUIDE="*res://addons/guide/guide.gd"
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/guide/plugin.cfg")
+
+[physics]
+
+3d/physics_engine="Jolt Physics"

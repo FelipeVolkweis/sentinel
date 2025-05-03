@@ -1,23 +1,21 @@
-[gd_scene load_steps=9 format=3 uid="uid://yxpgihmcjafi"]
+[gd_scene load_steps=8 format=3 uid="uid://yxpgihmcjafi"]
 
 [ext_resource type="PackedScene" uid="uid://c3xrmu4sfxxc1" path="res://camera/player_camera/player_camera.tscn" id="1_oul6g"]
-[ext_resource type="Script" uid="uid://cd8brgmo2vxcr" path="res://player/player_body.gd" id="1_rkbax"]
-[ext_resource type="Resource" uid="uid://y7w0vp1ehncd" path="res://player/input/move.tres" id="2_g1dw6"]
+[ext_resource type="Script" uid="uid://cd8brgmo2vxcr" path="res://player/player.gd" id="1_rkbax"]
 [ext_resource type="Resource" uid="uid://bhk5uuv3bycxi" path="res://player/input/regular_mode.tres" id="2_yw30f"]
-[ext_resource type="Resource" uid="uid://dag0q5k2rs8js" path="res://player/input/rotate.tres" id="4_qjkh3"]
 [ext_resource type="Resource" uid="uid://bc4inf70xcykp" path="res://camera/player_camera/rotate_player_camera.tres" id="6_g6k8r"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kqu6x"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_oul6g"]
 
+[sub_resource type="PrismMesh" id="PrismMesh_g6k8r"]
+
 [node name="Player" type="Node3D"]
 
 [node name="PlayerBody" type="CharacterBody3D" parent="."]
 script = ExtResource("1_rkbax")
 regular_mode = ExtResource("2_yw30f")
-move = ExtResource("2_g1dw6")
-rotate = ExtResource("4_qjkh3")
 
 [node name="CapsuleShape3D" type="CollisionShape3D" parent="PlayerBody"]
 shape = SubResource("CapsuleShape3D_kqu6x")
@@ -25,6 +23,10 @@ shape = SubResource("CapsuleShape3D_kqu6x")
 [node name="CapsuleMeshInstance3D" type="MeshInstance3D" parent="PlayerBody"]
 mesh = SubResource("CapsuleMesh_oul6g")
 
+[node name="FaceMeshInstance3D" type="MeshInstance3D" parent="PlayerBody/CapsuleMeshInstance3D"]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.7, 0, 0.76249, -0.473474)
+mesh = SubResource("PrismMesh_g6k8r")
+
 [node name="PlayerCamera" parent="PlayerBody" node_paths=PackedStringArray("follow") instance=ExtResource("1_oul6g")]
-follow = NodePath("..")
+follow = NodePath("../..")
 rotate_player_camera = ExtResource("6_g6k8r")
