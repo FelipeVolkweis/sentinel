@@ -9,7 +9,7 @@ func update(delta: float) -> void:
 
 
 func execute(delta: float) -> void:
-	print("On ", name)
+	#print("On ", name)
 	update(delta)
 	if _current_state:
 		_current_state.update(delta)

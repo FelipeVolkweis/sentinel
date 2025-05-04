@@ -8,8 +8,8 @@ extends Node3D
 		_refresh()
 @export var rotate_player_camera: GUIDEAction
 
-@onready var _camera_arm: Node3D = %CameraArm
-@onready var _player_camera = %PlayerCamera
+@onready var _camera_arm: Node3D = %FixedCameraArm
+@onready var _player_camera = %FixedPlayerCamera
 
 func _ready():
 	_refresh()

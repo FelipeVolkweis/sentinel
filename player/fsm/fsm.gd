@@ -20,7 +20,6 @@ func _ready() -> void:
 
 func run(delta: float) -> void:
 	if _current_state != null:
-		print(name + " on " + _current_state.name)
 		_current_state.execute(delta)
 
 
