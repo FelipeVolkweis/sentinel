@@ -17,3 +17,9 @@ func _process(delta: float) -> void:
 		player.state_chart.send_event("airborne")
 	else:
 		player.state_chart.send_event("grounded")
+
+	if player.run_input.is_triggered():
+		player.state_chart.send_event("run_input")
+	else:
+		player.state_chart.send_event("no_run_input")
+	
