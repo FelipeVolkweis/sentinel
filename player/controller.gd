@@ -22,4 +22,19 @@ func _process(delta: float) -> void:
 		player.state_chart.send_event("run_input")
 	else:
 		player.state_chart.send_event("no_run_input")
+
+
+func get_move_direction() -> Vector3:
+	var input_dir = player.move_input.value_axis_3d.normalized()
+	var camera_basis = player.camera.global_transform.basis
+
+	var forward = camera_basis.z
+	var right = camera_basis.x
+	forward.y = 0
+	right.y = 0
+	forward = forward.normalized()
+	right = right.normalized()
+
+	var direction = (right * input_dir.x + forward * input_dir.z).normalized()
 	
+	return direction

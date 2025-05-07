@@ -1,10 +1,11 @@
 extends CharacterBody3D
 
-@export var running_speed: float = 10.0
-@export var walking_speed: float = 4.0
-@export var rotation_speed: float = 5.0
+@export var running_speed: float = 6.0
+@export var walking_speed: float = 1.0
+@export var rotation_speed: float = 8.0
 @export var jump_speed: float = 7.0
 @export var deceleration: float = 15.0
+@export var air_control: float = 2.0
 
 @export var regular_3rd_person: GUIDEMappingContext
 
