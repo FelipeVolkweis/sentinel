@@ -20,12 +20,17 @@ func _process(delta: float) -> void:
 
 	if player.run_input.is_triggered():
 		player.state_chart.send_event("run_input")
-	else:
-		player.state_chart.send_event("no_run_input")
+	
+	if player.walk_input.is_triggered():
+		player.state_chart.send_event("walk_input")
+
+
+func get_input_direction() -> Vector3:
+	return player.move_input.value_axis_3d.normalized()
 
 
 func get_move_direction() -> Vector3:
-	var input_dir = player.move_input.value_axis_3d.normalized()
+	var input_dir = get_input_direction()
 	var camera_basis = player.camera.global_transform.basis
 
 	var forward = camera_basis.z
