@@ -24,12 +24,27 @@ func _process(delta: float) -> void:
 	if player.walk_input.is_triggered():
 		player.state_chart.send_event("walk_input")
 
+	if player.camera_toggle_input.is_triggered():
+		player.camera_type = (player.camera_type + 1) % player.CameraType.size()
+	
+	match player.camera_type:
+		player.CameraType.FREE:
+			player.camera.current = false
+			player.camera = player.free_camera
+			player.camera.current = true
+		player.CameraType.FIXED:
+			player.camera.current = false
+			player.camera = player.fixed_camera
+			player.camera.current = true
+		_:
+			pass
+
 
 func get_input_direction() -> Vector3:
 	return player.move_input.value_axis_3d.normalized()
 
 
-func get_move_direction() -> Vector3:
+func get_free_move_direction() -> Vector3:
 	var input_dir = get_input_direction()
 	var camera_basis = player.camera.global_transform.basis
 
@@ -39,7 +54,6 @@ func get_move_direction() -> Vector3:
 	right.y = 0
 	forward = forward.normalized()
 	right = right.normalized()
-
-	var direction = (right * input_dir.x + forward * input_dir.z).normalized()
 	
+	var direction = (right * input_dir.x + forward * input_dir.z).normalized()
 	return direction

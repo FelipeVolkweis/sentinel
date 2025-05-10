@@ -8,9 +8,11 @@ extends Node
 @onready var animation_fsm = animation_tree["parameters/playback"]
 
 func move_to(speed: float, delta: float):
-	var direction = controller.get_move_direction()
-	var target_rotation = atan2(direction.x, direction.z) - player.rotation.y + PI
-	
-	player.visuals.rotation.y = lerp_angle(player.visuals.rotation.y, target_rotation, player.rotation_speed * delta)
-	player.velocity.x = direction.x * speed
-	player.velocity.z = direction.z * speed
+	if player.camera_type == player.CameraType.FREE:
+		var direction = controller.get_free_move_direction()
+		var target_rotation = atan2(direction.x, direction.z) - player.rotation.y + PI
+		player.visuals.rotation.y = lerp_angle(player.visuals.rotation.y, target_rotation, player.rotation_speed * delta)
+		player.velocity = player.velocity.move_toward(direction * speed, player.movement_acceleration * delta)
+	elif player.camera_type == player.CameraType.FIXED:
+		pass
+		
