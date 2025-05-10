@@ -1,4 +1,4 @@
-extends BaseAction
+extends FreeMovement
 
 
 func _on_falling_state_entered() -> void:

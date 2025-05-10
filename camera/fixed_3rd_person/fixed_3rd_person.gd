@@ -6,7 +6,7 @@ extends Node3D
 
 @export var pitch_input: GUIDEAction
 
-@export var pitch_limit_min := -50.0 
+@export var pitch_limit_min := -40.0 
 @export var pitch_limit_max := 50.0  
 
 var pitch = 0.0

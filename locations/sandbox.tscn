@@ -17,7 +17,7 @@ size = Vector3(50, 0.5, 33)
 material = SubResource("ORMMaterial3D_osa5q")
 
 [node name="Player" parent="." instance=ExtResource("1_o03jh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.80524, -3.09101)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.66093, -3.09101)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.662372, 0.749175, 0, -0.749175, -0.662372, 0, 7.38171, -16.3206)

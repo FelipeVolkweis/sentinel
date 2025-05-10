@@ -1,4 +1,4 @@
-extends BaseAction
+extends FreeMovement
 
 
 func _on_sprinting_state_physics_processing(delta: float) -> void:

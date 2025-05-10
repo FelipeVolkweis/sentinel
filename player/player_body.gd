@@ -6,7 +6,7 @@ extends CharacterBody3D
 @export var movement_acceleration: float = 25.0
 
 @export var rotation_speed: float = 8.0
-@export var jump_speed: float = 5.0
+@export var jump_speed: float = 8.0
 @export var deceleration: float = 15.0
 @export var air_control: float = 1.0
 
@@ -42,6 +42,6 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
-		velocity.y -= gravity * delta
+		velocity.y -= 2.25 * gravity * delta
 		
 	move_and_slide()

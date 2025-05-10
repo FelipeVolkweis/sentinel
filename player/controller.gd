@@ -18,12 +18,16 @@ func _process(delta: float) -> void:
 	else:
 		player.state_chart.send_event("grounded")
 
-	if player.run_input.is_triggered():
+	if player.run_input.is_triggered() and player.move_input.value_axis_3d.normalized() != Vector3.ZERO:
 		player.state_chart.send_event("run_input")
 	
-	if player.walk_input.is_triggered():
+	if player.walk_input.is_triggered() and player.move_input.value_axis_3d.normalized() != Vector3.ZERO:
 		player.state_chart.send_event("walk_input")
+		
+	_camera_input_handler()
 
+
+func _camera_input_handler():
 	if player.camera_toggle_input.is_triggered():
 		player.camera_type = (player.camera_type + 1) % player.CameraType.size()
 	
@@ -32,16 +36,24 @@ func _process(delta: float) -> void:
 			player.camera.current = false
 			player.camera = player.free_camera
 			player.camera.current = true
+			
+			player.state_chart.send_event("free_movement")
+			if not player.is_on_floor():
+				player.state_chart.send_event("free_fall")
 		player.CameraType.FIXED:
 			player.camera.current = false
 			player.camera = player.fixed_camera
 			player.camera.current = true
+			
+			player.state_chart.send_event("fixed_movement")
+			if not player.is_on_floor():
+				player.state_chart.send_event("fixed_fall")
 		_:
 			pass
 
 
 func get_input_direction() -> Vector3:
-	return player.move_input.value_axis_3d.normalized()
+	return player.move_input.value_axis_3d
 
 
 func get_free_move_direction() -> Vector3:
