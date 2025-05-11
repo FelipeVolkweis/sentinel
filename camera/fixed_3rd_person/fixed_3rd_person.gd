@@ -1,25 +1,15 @@
-class_name PlayerCamera
 extends Node3D
 
-@export var follow: Node3D
-@export var active: bool:
-	set(value):
-		active = value
-		_refresh()
-@export var rotate_player_camera: GUIDEAction
+@onready var pitch_node = $Yaw/Pitch
+@onready var camera = $Yaw/Pitch/SpringArm3D/Camera3D
 
-@onready var _camera_arm: Node3D = %FixedCameraArm
-@onready var _player_camera = %FixedPlayerCamera
+@export var pitch_input: GUIDEAction
 
-func _ready():
-	_refresh()
-	
+@export var pitch_limit_min := -40.0 
+@export var pitch_limit_max := 50.0  
+
+var pitch = 0.0
+
 func _process(delta: float) -> void:
-	_camera_arm.rotation_degrees.x = clamp(_camera_arm.rotation_degrees.x + rotate_player_camera.value_axis_1d, -90, 0)
-	if is_instance_valid(follow):
-		transform = follow.transform
-
-func _refresh():
-	if not is_instance_valid(_player_camera):
-		return
-	_player_camera.current = active
+	pitch = clamp(pitch + pitch_input.value_axis_1d, pitch_limit_min, pitch_limit_max)
+	pitch_node.rotation_degrees.x = pitch

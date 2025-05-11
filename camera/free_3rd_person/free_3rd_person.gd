@@ -3,14 +3,13 @@ extends Node3D
 
 @onready var yaw_node = $Yaw
 @onready var pitch_node = $Yaw/Pitch
-@onready var _camera_arm = $Yaw/Pitch/SpringArm3D
 @onready var camera = $Yaw/Pitch/SpringArm3D/Camera3D
 
 @export var pitch_input: GUIDEAction
 @export var yaw_input: GUIDEAction
 
-@export var pitch_limit_min := -60.0 
-@export var pitch_limit_max := 60.0  
+@export var pitch_limit_min := -40.0 
+@export var pitch_limit_max := 50.0  
 
 var yaw = 0.0
 var pitch = 0.0
