@@ -28,12 +28,44 @@ var _8way_jog := {
 	"jog_center": "AnimationLibrary_Godot_Standard/Idle"
 }
 
+var _8way_sprint := {
+	"sprint_front": "Dash_Root/Dash_Root",
+	"sprint_front_left": "Dash_Root/Dash_Front_L_Root",
+	"sprint_front_left_45": "Dash_Root/Dash_Front_L45_Root",
+	"sprint_front_right": "Dash_Root/Dash_Front_R_Root",
+	"sprint_front_right_45": "Dash_Root/Dash_Front_R45_Root",
+	"sprint_back": "Dash_Root/Dash_Back_Root",
+	"sprint_back_left": "Dash_Root/Dash_Back_L_Root",
+	"sprint_back_left_45": "Dash_Root/Dash_Back_L45_Root",
+	"sprint_back_right": "Dash_Root/Dash_Back_R_Root",
+	"sprint_back_right_45": "Dash_Root/Dash_Back_R45_Root",
+	"sprint_center": "AnimationLibrary_Godot_Standard/Idle"
+}
+
+var _8way_walk := {
+	"walk_front": "Walk_Root/Walk_Root",
+	"walk_front_left": "Walk_Root/Walk_Front_L_Root",
+	"walk_front_left_45": "Walk_Root/Walk_Front_L45_Root",
+	"walk_front_right": "Walk_Root/Walk_Front_R_Root",
+	"walk_front_right_45": "Walk_Root/Walk_Front_R45_Root",
+	"walk_back": "Walk_Root/Walk_Back_Root",
+	"walk_back_left": "Walk_Root/Walk_Back_L_Root",
+	"walk_back_left_45": "Walk_Root/Walk_Back_L45_Root",
+	"walk_back_right": "Walk_Root/Walk_Back_R_Root",
+	"walk_back_right_45": "Walk_Root/Walk_Back_R45_Root",
+	"walk_center": "AnimationLibrary_Godot_Standard/Idle"
+}
+
 var animations: Dictionary = {}
 var _last_8way_input := Vector2.ZERO
 
 func _ready() -> void:
 	for key in _8way_jog:
 		movement_animations[key] = _8way_jog[key]
+	for key in _8way_sprint:
+		movement_animations[key] = _8way_sprint[key]
+	for key in _8way_walk:
+		movement_animations[key] = _8way_walk[key]
 	for key in movement_animations:
 		animations[key] = movement_animations[key]
 	for key in jump_animations:
