@@ -1,4 +1,4 @@
-[gd_scene load_steps=83 format=4 uid="uid://yxpgihmcjafi"]
+[gd_scene load_steps=72 format=4 uid="uid://yxpgihmcjafi"]
 
 [ext_resource type="PackedScene" uid="uid://c3xrmu4sfxxc1" path="res://camera/fixed_3rd_person/fixed_3rd_person.tscn" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://j8b0mb6i5g6l" path="res://player/player_body.gd" id="1_yw30f"]
@@ -38,6 +38,8 @@
 [ext_resource type="Script" uid="uid://b45ghqy3n6ieh" path="res://player/actions/fixed_idling.gd" id="27_jfgyi"]
 [ext_resource type="AnimationLibrary" uid="uid://b3ronohcurjtu" path="res://assets/humanoid/AnimationLibrary_Godot_Standard.glb" id="28_1so5t"]
 [ext_resource type="AnimationLibrary" uid="uid://cmavs5dl5dx87" path="res://assets/humanoid/jmp/Jump_B.glb" id="30_mmwog"]
+[ext_resource type="Script" uid="uid://cbbthcclsuv02" path="res://player/animation_player.gd" id="33_55jnj"]
+[ext_resource type="Script" uid="uid://dggl21qdyaciq" path="res://addons/godot_state_charts/expression_guard.gd" id="39_dx5ib"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nwky8"]
 resource_name = "M_Main"
@@ -253,161 +255,135 @@ bind/52/pose = Transform3D(1, 1.7463e-10, 1.16415e-10, -1.74605e-10, -4.47035e-0
 radius = 0.251627
 height = 1.78668
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_e7oew"]
-animation = &"AnimationLibrary_Godot_Standard/Idle"
+[sub_resource type="Resource" id="Resource_n0b8q"]
+script = ExtResource("39_dx5ib")
+expression = "!sprinting && moving"
+metadata/_custom_type_script = "uid://dggl21qdyaciq"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dx5ib"]
-animation = &"Jog_Root/Jog_Root"
+[sub_resource type="Resource" id="Resource_jfgyi"]
+script = ExtResource("39_dx5ib")
+expression = "!moving"
+metadata/_custom_type_script = "uid://dggl21qdyaciq"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mmwog"]
-animation = &"Jog_Root/Jog_Back_Root"
+[sub_resource type="Resource" id="Resource_237xx"]
+script = ExtResource("39_dx5ib")
+expression = "sprinting && moving"
+metadata/_custom_type_script = "uid://dggl21qdyaciq"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8pxes"]
-animation = &"Jog_Root/Jog_Root"
+[sub_resource type="Resource" id="Resource_wpyo2"]
+script = ExtResource("39_dx5ib")
+expression = "walking && moving"
+metadata/_custom_type_script = "uid://dggl21qdyaciq"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fmu53"]
-animation = &"Jog_Root/Jog_Front_R_Root"
+[sub_resource type="Resource" id="Resource_7crtr"]
+script = ExtResource("39_dx5ib")
+expression = "!moving"
+metadata/_custom_type_script = "uid://dggl21qdyaciq"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_w7j2h"]
-animation = &"Jog_Root/Jog_Front_L_Root"
+[sub_resource type="Resource" id="Resource_vgvch"]
+script = ExtResource("39_dx5ib")
+expression = "sprinting && moving"
+metadata/_custom_type_script = "uid://dggl21qdyaciq"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_n0b8q"]
-animation = &"Jog_Root/Jog_Front_L45_Root"
+[sub_resource type="Resource" id="Resource_a1u5o"]
+script = ExtResource("39_dx5ib")
+expression = "walking && moving"
+metadata/_custom_type_script = "uid://dggl21qdyaciq"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jfgyi"]
-animation = &"Jog_Root/Jog_Front_R45_Root"
+[sub_resource type="Resource" id="Resource_3dxkp"]
+script = ExtResource("39_dx5ib")
+expression = "moving"
+metadata/_custom_type_script = "uid://dggl21qdyaciq"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_237xx"]
-animation = &"Jog_Root/Jog_Back_R45_Root"
+[sub_resource type="Resource" id="Resource_6wior"]
+script = ExtResource("39_dx5ib")
+expression = "moving && !walking"
+metadata/_custom_type_script = "uid://dggl21qdyaciq"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wpyo2"]
-animation = &"Jog_Root/Jog_Back_L45_Root"
+[sub_resource type="Resource" id="Resource_p5tca"]
+script = ExtResource("39_dx5ib")
+expression = "!moving"
+metadata/_custom_type_script = "uid://dggl21qdyaciq"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7crtr"]
-animation = &"AnimationLibrary_Godot_Standard/Idle"
+[sub_resource type="Resource" id="Resource_pjwc4"]
+script = ExtResource("39_dx5ib")
+expression = "grounded"
+metadata/_custom_type_script = "uid://dggl21qdyaciq"
 
-[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_vgvch"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_mmwog")
-blend_point_0/pos = Vector2(0, -1)
-blend_point_1/node = SubResource("AnimationNodeAnimation_8pxes")
-blend_point_1/pos = Vector2(0, 1)
-blend_point_2/node = SubResource("AnimationNodeAnimation_fmu53")
-blend_point_2/pos = Vector2(1, 0)
-blend_point_3/node = SubResource("AnimationNodeAnimation_w7j2h")
-blend_point_3/pos = Vector2(-1, 0)
-blend_point_4/node = SubResource("AnimationNodeAnimation_n0b8q")
-blend_point_4/pos = Vector2(-1, 1)
-blend_point_5/node = SubResource("AnimationNodeAnimation_jfgyi")
-blend_point_5/pos = Vector2(1, 1)
-blend_point_6/node = SubResource("AnimationNodeAnimation_237xx")
-blend_point_6/pos = Vector2(1, -1)
-blend_point_7/node = SubResource("AnimationNodeAnimation_wpyo2")
-blend_point_7/pos = Vector2(-1, -1)
-blend_point_8/node = SubResource("AnimationNodeAnimation_7crtr")
-blend_point_8/pos = Vector2(0, 0)
-max_space = Vector2(1, 1.01)
-x_label = "direction"
-y_label = "speed"
+[sub_resource type="Resource" id="Resource_35wys"]
+script = ExtResource("39_dx5ib")
+expression = "airborne"
+metadata/_custom_type_script = "uid://dggl21qdyaciq"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_c35mf"]
-animation = &"Jump_B/Jump_Loop_B"
+[sub_resource type="Resource" id="Resource_jbx34"]
+script = ExtResource("39_dx5ib")
+expression = "grounded"
+metadata/_custom_type_script = "uid://dggl21qdyaciq"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_65viv"]
-animation = &"Jump_B/Jump_Land_B"
+[sub_resource type="Resource" id="Resource_s3g0c"]
+script = ExtResource("39_dx5ib")
+expression = "grounded"
+metadata/_custom_type_script = "uid://dggl21qdyaciq"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_x7c3f"]
-animation = &"Jump_B/Jump_Start_B"
+[sub_resource type="Resource" id="Resource_a2xo5"]
+script = ExtResource("39_dx5ib")
+expression = "!sprinting && moving"
+metadata/_custom_type_script = "uid://dggl21qdyaciq"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_s7qer"]
-animation = &"Dash_Root/Dash_Root"
+[sub_resource type="Resource" id="Resource_fmu53"]
+script = ExtResource("39_dx5ib")
+expression = "!moving"
+metadata/_custom_type_script = "uid://dggl21qdyaciq"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bjvpn"]
-animation = &"Walk_Root/Walk_Root"
+[sub_resource type="Resource" id="Resource_dx5ib"]
+script = ExtResource("39_dx5ib")
+expression = "sprinting && moving"
+metadata/_custom_type_script = "uid://dggl21qdyaciq"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_s7qer"]
-switch_mode = 2
-advance_mode = 2
+[sub_resource type="Resource" id="Resource_j55il"]
+script = ExtResource("39_dx5ib")
+expression = "walking && moving"
+metadata/_custom_type_script = "uid://dggl21qdyaciq"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_uw77l"]
+[sub_resource type="Resource" id="Resource_fjxoa"]
+script = ExtResource("39_dx5ib")
+expression = "!moving"
+metadata/_custom_type_script = "uid://dggl21qdyaciq"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rptt4"]
-xfade_time = 0.3
+[sub_resource type="Resource" id="Resource_hjies"]
+script = ExtResource("39_dx5ib")
+expression = "sprinting && moving"
+metadata/_custom_type_script = "uid://dggl21qdyaciq"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_r7pn3"]
-xfade_time = 0.1
+[sub_resource type="Resource" id="Resource_gswnw"]
+script = ExtResource("39_dx5ib")
+expression = "moving"
+metadata/_custom_type_script = "uid://dggl21qdyaciq"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_b8hi5"]
-xfade_time = 0.3
+[sub_resource type="Resource" id="Resource_xcnuv"]
+script = ExtResource("39_dx5ib")
+expression = "moving && !walking"
+metadata/_custom_type_script = "uid://dggl21qdyaciq"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1s1yo"]
-xfade_time = 0.1
+[sub_resource type="Resource" id="Resource_mmwog"]
+script = ExtResource("39_dx5ib")
+expression = "!moving"
+metadata/_custom_type_script = "uid://dggl21qdyaciq"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_g4c7l"]
-xfade_time = 0.1
+[sub_resource type="Resource" id="Resource_w7j2h"]
+script = ExtResource("39_dx5ib")
+expression = "airborne"
+metadata/_custom_type_script = "uid://dggl21qdyaciq"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_knn7v"]
-xfade_time = 0.1
+[sub_resource type="Resource" id="Resource_art4l"]
+script = ExtResource("39_dx5ib")
+expression = "grounded"
+metadata/_custom_type_script = "uid://dggl21qdyaciq"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7pqkx"]
-xfade_time = 0.1
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2uvqg"]
-xfade_time = 0.1
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pnw6m"]
-xfade_time = 0.1
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_a2xo5"]
-xfade_time = 0.1
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_art4l"]
-xfade_time = 0.1
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fjxoa"]
-xfade_time = 0.1
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gswnw"]
-xfade_time = 0.1
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dx5ib"]
-xfade_time = 0.1
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xcnuv"]
-xfade_time = 0.2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_j55il"]
-xfade_time = 0.2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hjies"]
-xfade_time = 0.1
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1so5t"]
-xfade_time = 0.1
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_55jnj"]
-xfade_time = 0.1
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_e7oew"]
-states/End/position = Vector2(725, 165)
-states/Idle/node = SubResource("AnimationNodeAnimation_e7oew")
-states/Idle/position = Vector2(309, 88)
-states/Jog/node = SubResource("AnimationNodeAnimation_dx5ib")
-states/Jog/position = Vector2(100, 214)
-states/JogBlendSpace/node = SubResource("AnimationNodeBlendSpace2D_vgvch")
-states/JogBlendSpace/position = Vector2(-97, 214)
-states/Jump/node = SubResource("AnimationNodeAnimation_c35mf")
-states/Jump/position = Vector2(575, 214)
-states/Jump_Land/node = SubResource("AnimationNodeAnimation_65viv")
-states/Jump_Land/position = Vector2(575, 345)
-states/Jump_Start/node = SubResource("AnimationNodeAnimation_x7c3f")
-states/Jump_Start/position = Vector2(575, 88)
-states/Sprint/node = SubResource("AnimationNodeAnimation_s7qer")
-states/Sprint/position = Vector2(309, 345)
-states/Start/position = Vector2(309, -15)
-states/Walk/node = SubResource("AnimationNodeAnimation_bjvpn")
-states/Walk/position = Vector2(309, 214)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_s7qer"), "Idle", "Jump_Start", SubResource("AnimationNodeStateMachineTransition_uw77l"), "Jump_Start", "Jump", SubResource("AnimationNodeStateMachineTransition_rptt4"), "Jump", "Jump_Land", SubResource("AnimationNodeStateMachineTransition_r7pn3"), "Jump_Land", "Idle", SubResource("AnimationNodeStateMachineTransition_b8hi5"), "Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_1s1yo"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_g4c7l"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_knn7v"), "Walk", "Sprint", SubResource("AnimationNodeStateMachineTransition_7pqkx"), "Sprint", "Walk", SubResource("AnimationNodeStateMachineTransition_2uvqg"), "Sprint", "Jump_Start", SubResource("AnimationNodeStateMachineTransition_pnw6m"), "Idle", "Jog", SubResource("AnimationNodeStateMachineTransition_a2xo5"), "Jog", "Walk", SubResource("AnimationNodeStateMachineTransition_art4l"), "Jog", "Sprint", SubResource("AnimationNodeStateMachineTransition_fjxoa"), "Sprint", "Jog", SubResource("AnimationNodeStateMachineTransition_gswnw"), "Walk", "Jog", SubResource("AnimationNodeStateMachineTransition_dx5ib"), "Jump_Land", "Jog", SubResource("AnimationNodeStateMachineTransition_xcnuv"), "Jump_Land", "Sprint", SubResource("AnimationNodeStateMachineTransition_j55il"), "Jog", "Jump_Start", SubResource("AnimationNodeStateMachineTransition_hjies"), "JogBlendSpace", "Idle", SubResource("AnimationNodeStateMachineTransition_1so5t"), "Idle", "JogBlendSpace", SubResource("AnimationNodeStateMachineTransition_55jnj")]
-graph_offset = Vector2(-486, -38)
+[sub_resource type="Resource" id="Resource_8pxes"]
+script = ExtResource("39_dx5ib")
+expression = "grounded"
+metadata/_custom_type_script = "uid://dggl21qdyaciq"
 
 [node name="Player" type="Node3D"]
 
@@ -445,116 +421,100 @@ shape = SubResource("CapsuleShape3D_kqu6x")
 
 [node name="Actions" type="Node" parent="PlayerBody/Model"]
 
-[node name="BaseAction" type="Node" parent="PlayerBody/Model/Actions" node_paths=PackedStringArray("player", "controller", "animation_tree", "animator")]
+[node name="BaseAction" type="Node" parent="PlayerBody/Model/Actions" node_paths=PackedStringArray("player", "controller", "animator")]
 script = ExtResource("12_1s1yo")
 player = NodePath("../../..")
 controller = NodePath("../../../Controller")
-animation_tree = NodePath("../../Visuals/AnimationTree")
 animator = NodePath("../../Visuals/AnimationPlayer")
 
-[node name="Jumping" type="Node" parent="PlayerBody/Model/Actions" node_paths=PackedStringArray("player", "controller", "animation_tree", "animator")]
+[node name="Jumping" type="Node" parent="PlayerBody/Model/Actions" node_paths=PackedStringArray("player", "controller", "animator")]
 script = ExtResource("12_2uvqg")
 player = NodePath("../../..")
 controller = NodePath("../../../Controller")
-animation_tree = NodePath("../../Visuals/AnimationTree")
 animator = NodePath("../../Visuals/AnimationPlayer")
 
-[node name="FreeMovement" type="Node" parent="PlayerBody/Model/Actions" node_paths=PackedStringArray("player", "controller", "animation_tree", "animator")]
+[node name="FreeMovement" type="Node" parent="PlayerBody/Model/Actions" node_paths=PackedStringArray("player", "controller", "animator")]
 script = ExtResource("14_a2xo5")
 player = NodePath("../../..")
 controller = NodePath("../../../Controller")
-animation_tree = NodePath("../../Visuals/AnimationTree")
 animator = NodePath("../../Visuals/AnimationPlayer")
 
-[node name="FreeFalling" type="Node" parent="PlayerBody/Model/Actions/FreeMovement" node_paths=PackedStringArray("player", "controller", "animation_tree", "animator")]
+[node name="FreeFalling" type="Node" parent="PlayerBody/Model/Actions/FreeMovement" node_paths=PackedStringArray("player", "controller", "animator")]
 script = ExtResource("14_pnw6m")
 player = NodePath("../../../..")
 controller = NodePath("../../../../Controller")
-animation_tree = NodePath("../../../Visuals/AnimationTree")
 animator = NodePath("../../../Visuals/AnimationPlayer")
 
-[node name="FreeLanding" type="Node" parent="PlayerBody/Model/Actions/FreeMovement" node_paths=PackedStringArray("player", "controller", "animation_tree", "animator")]
+[node name="FreeLanding" type="Node" parent="PlayerBody/Model/Actions/FreeMovement" node_paths=PackedStringArray("player", "controller", "animator")]
 script = ExtResource("15_1so5t")
 player = NodePath("../../../..")
 controller = NodePath("../../../../Controller")
-animation_tree = NodePath("../../../Visuals/AnimationTree")
 animator = NodePath("../../../Visuals/AnimationPlayer")
 
-[node name="FreeWalking" type="Node" parent="PlayerBody/Model/Actions/FreeMovement" node_paths=PackedStringArray("player", "controller", "animation_tree", "animator")]
+[node name="FreeWalking" type="Node" parent="PlayerBody/Model/Actions/FreeMovement" node_paths=PackedStringArray("player", "controller", "animator")]
 script = ExtResource("16_55jnj")
 player = NodePath("../../../..")
 controller = NodePath("../../../../Controller")
-animation_tree = NodePath("../../../Visuals/AnimationTree")
 animator = NodePath("../../../Visuals/AnimationPlayer")
 
-[node name="FreeJogging" type="Node" parent="PlayerBody/Model/Actions/FreeMovement" node_paths=PackedStringArray("player", "controller", "animation_tree", "animator")]
+[node name="FreeJogging" type="Node" parent="PlayerBody/Model/Actions/FreeMovement" node_paths=PackedStringArray("player", "controller", "animator")]
 script = ExtResource("18_a2xo5")
 player = NodePath("../../../..")
 controller = NodePath("../../../../Controller")
-animation_tree = NodePath("../../../Visuals/AnimationTree")
 animator = NodePath("../../../Visuals/AnimationPlayer")
 
-[node name="FreeSprinting" type="Node" parent="PlayerBody/Model/Actions/FreeMovement" node_paths=PackedStringArray("player", "controller", "animation_tree", "animator")]
+[node name="FreeSprinting" type="Node" parent="PlayerBody/Model/Actions/FreeMovement" node_paths=PackedStringArray("player", "controller", "animator")]
 script = ExtResource("19_art4l")
 player = NodePath("../../../..")
 controller = NodePath("../../../../Controller")
-animation_tree = NodePath("../../../Visuals/AnimationTree")
 animator = NodePath("../../../Visuals/AnimationPlayer")
 
-[node name="FreeIdling" type="Node" parent="PlayerBody/Model/Actions/FreeMovement" node_paths=PackedStringArray("player", "controller", "animation_tree", "animator")]
+[node name="FreeIdling" type="Node" parent="PlayerBody/Model/Actions/FreeMovement" node_paths=PackedStringArray("player", "controller", "animator")]
 script = ExtResource("17_dx5ib")
 player = NodePath("../../../..")
 controller = NodePath("../../../../Controller")
-animation_tree = NodePath("../../../Visuals/AnimationTree")
 animator = NodePath("../../../Visuals/AnimationPlayer")
 
-[node name="FixedMovement" type="Node" parent="PlayerBody/Model/Actions" node_paths=PackedStringArray("player", "controller", "animation_tree", "animator")]
+[node name="FixedMovement" type="Node" parent="PlayerBody/Model/Actions" node_paths=PackedStringArray("player", "controller", "animator")]
 script = ExtResource("21_art4l")
 player = NodePath("../../..")
 controller = NodePath("../../../Controller")
-animation_tree = NodePath("../../Visuals/AnimationTree")
 animator = NodePath("../../Visuals/AnimationPlayer")
 
-[node name="FixedFalling" type="Node" parent="PlayerBody/Model/Actions/FixedMovement" node_paths=PackedStringArray("player", "controller", "animation_tree", "animator")]
+[node name="FixedFalling" type="Node" parent="PlayerBody/Model/Actions/FixedMovement" node_paths=PackedStringArray("player", "controller", "animator")]
 script = ExtResource("22_mmwog")
 player = NodePath("../../../..")
 controller = NodePath("../../../../Controller")
-animation_tree = NodePath("../../../Visuals/AnimationTree")
 animator = NodePath("../../../Visuals/AnimationPlayer")
 
-[node name="FixedLanding" type="Node" parent="PlayerBody/Model/Actions/FixedMovement" node_paths=PackedStringArray("player", "controller", "animation_tree", "animator")]
+[node name="FixedLanding" type="Node" parent="PlayerBody/Model/Actions/FixedMovement" node_paths=PackedStringArray("player", "controller", "animator")]
 script = ExtResource("23_8pxes")
 player = NodePath("../../../..")
 controller = NodePath("../../../../Controller")
-animation_tree = NodePath("../../../Visuals/AnimationTree")
 animator = NodePath("../../../Visuals/AnimationPlayer")
 
-[node name="FixedWalking" type="Node" parent="PlayerBody/Model/Actions/FixedMovement" node_paths=PackedStringArray("player", "controller", "animation_tree", "animator")]
+[node name="FixedWalking" type="Node" parent="PlayerBody/Model/Actions/FixedMovement" node_paths=PackedStringArray("player", "controller", "animator")]
 script = ExtResource("24_fmu53")
 player = NodePath("../../../..")
 controller = NodePath("../../../../Controller")
-animation_tree = NodePath("../../../Visuals/AnimationTree")
 animator = NodePath("../../../Visuals/AnimationPlayer")
 
-[node name="FixedJogging" type="Node" parent="PlayerBody/Model/Actions/FixedMovement" node_paths=PackedStringArray("player", "controller", "animation_tree", "animator")]
+[node name="FixedJogging" type="Node" parent="PlayerBody/Model/Actions/FixedMovement" node_paths=PackedStringArray("player", "controller", "animator")]
 script = ExtResource("25_w7j2h")
 player = NodePath("../../../..")
 controller = NodePath("../../../../Controller")
-animation_tree = NodePath("../../../Visuals/AnimationTree")
 animator = NodePath("../../../Visuals/AnimationPlayer")
 
-[node name="FixedSprinting" type="Node" parent="PlayerBody/Model/Actions/FixedMovement" node_paths=PackedStringArray("player", "controller", "animation_tree", "animator")]
+[node name="FixedSprinting" type="Node" parent="PlayerBody/Model/Actions/FixedMovement" node_paths=PackedStringArray("player", "controller", "animator")]
 script = ExtResource("26_n0b8q")
 player = NodePath("../../../..")
 controller = NodePath("../../../../Controller")
-animation_tree = NodePath("../../../Visuals/AnimationTree")
 animator = NodePath("../../../Visuals/AnimationPlayer")
 
-[node name="FixedIdling" type="Node" parent="PlayerBody/Model/Actions/FixedMovement" node_paths=PackedStringArray("player", "controller", "animation_tree", "animator")]
+[node name="FixedIdling" type="Node" parent="PlayerBody/Model/Actions/FixedMovement" node_paths=PackedStringArray("player", "controller", "animator")]
 script = ExtResource("27_jfgyi")
 player = NodePath("../../../..")
 controller = NodePath("../../../../Controller")
-animation_tree = NodePath("../../../Visuals/AnimationTree")
 animator = NodePath("../../../Visuals/AnimationPlayer")
 
 [node name="Visuals" type="Node3D" parent="PlayerBody/Model"]
@@ -575,365 +535,365 @@ bones/1/name = "Hips"
 bones/1/parent = 0
 bones/1/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9167, -0.0501)
 bones/1/enabled = true
-bones/1/position = Vector3(0, 1, -0.0546526)
-bones/1/rotation = Quaternion(2.68221e-07, 0, 0, 1)
+bones/1/position = Vector3(3.25561e-09, 1.20251, -0.0103501)
+bones/1/rotation = Quaternion(0.00140122, -0.0150396, -0.0363052, 0.999227)
 bones/1/scale = Vector3(1, 1, 1)
 bones/2/name = "Spine"
 bones/2/parent = 1
 bones/2/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1338, 0.0345)
 bones/2/enabled = true
 bones/2/position = Vector3(0, 0.1338, 0.0345)
-bones/2/rotation = Quaternion(0, 0, 0, 1)
+bones/2/rotation = Quaternion(0.114183, -0.00873286, -0.00203919, 0.993419)
 bones/2/scale = Vector3(1, 1, 1)
 bones/3/name = "Chest"
 bones/3/parent = 2
 bones/3/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1231, 0.0152)
 bones/3/enabled = true
 bones/3/position = Vector3(0, 0.1231, 0.0152)
-bones/3/rotation = Quaternion(-1.45286e-07, 0, 0, 1)
+bones/3/rotation = Quaternion(0.229962, -0.00650829, 0.00385138, 0.97317)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/name = "UpperChest"
 bones/4/parent = 3
 bones/4/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1412, -0.00450002)
 bones/4/enabled = true
 bones/4/position = Vector3(0, 0.1412, -0.00450002)
-bones/4/rotation = Quaternion(-4.47035e-08, 0, 0, 1)
+bones/4/rotation = Quaternion(0.0576321, -0.00121239, 0.000937879, 0.998337)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/name = "Neck"
 bones/5/parent = 4
 bones/5/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1728, -0.00560004)
 bones/5/enabled = true
 bones/5/position = Vector3(0, 0.1728, -0.00560004)
-bones/5/rotation = Quaternion(2.23517e-08, 0, 0, 1)
+bones/5/rotation = Quaternion(-0.00131609, 2.98023e-08, 2.98023e-07, 0.999999)
 bones/5/scale = Vector3(1, 1, 1)
 bones/6/name = "Head"
 bones/6/parent = 5
 bones/6/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0811, 0.0156)
 bones/6/enabled = true
 bones/6/position = Vector3(0, 0.0811, 0.0156)
-bones/6/rotation = Quaternion(2.38419e-07, 0, 0, 1)
+bones/6/rotation = Quaternion(-0.275094, 0.0515437, 0.0212527, 0.9598)
 bones/6/scale = Vector3(1, 1, 1)
 bones/7/name = "LeftShoulder"
 bones/7/parent = 4
 bones/7/rest = Transform3D(0, 1, 0, 0, 0, 1, 1, 0, 0, 0.0188, 0.1431, 0.0763)
 bones/7/enabled = true
 bones/7/position = Vector3(0.0188, 0.1431, 0.0763)
-bones/7/rotation = Quaternion(0.5, 0.5, 0.5, -0.5)
+bones/7/rotation = Quaternion(0.60945, 0.370801, 0.405204, -0.57174)
 bones/7/scale = Vector3(1, 1, 1)
 bones/8/name = "LeftUpperArm"
 bones/8/parent = 7
 bones/8/rest = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, -0.1368, 0.1731, -0.0171001)
 bones/8/enabled = true
 bones/8/position = Vector3(-0.1368, 0.1731, -0.0171001)
-bones/8/rotation = Quaternion(1.63913e-07, 1, 4.47035e-08, -2.98023e-08)
+bones/8/rotation = Quaternion(-0.0257403, 0.929583, -0.306886, 0.20257)
 bones/8/scale = Vector3(1, 1, 1)
 bones/9/name = "LeftLowerArm"
 bones/9/parent = 8
 bones/9/rest = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 0.00469997, 0.2744, 3.76994e-08)
 bones/9/enabled = true
 bones/9/position = Vector3(0.00469997, 0.2744, 3.76994e-08)
-bones/9/rotation = Quaternion(-1.15904e-07, -0.707107, -1.05367e-08, 0.707107)
+bones/9/rotation = Quaternion(0.603581, -0.36836, 0.603582, 0.36836)
 bones/9/scale = Vector3(1, 1, 1)
 bones/10/name = "LeftHand"
 bones/10/parent = 9
 bones/10/rest = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 2.01338e-08, 0.2726, 0.00470004)
 bones/10/enabled = true
 bones/10/position = Vector3(2.01338e-08, 0.2726, 0.00470004)
-bones/10/rotation = Quaternion(-1.87516e-07, 0.707107, 1.07512e-07, 0.707106)
+bones/10/rotation = Quaternion(-0.123128, 0.655526, -0.00894958, 0.745014)
 bones/10/scale = Vector3(1, 1, 1)
 bones/11/name = "LeftIndexProximal"
 bones/11/parent = 10
 bones/11/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0309, 0.1199, 0.00199981)
 bones/11/enabled = true
 bones/11/position = Vector3(-0.0309, 0.1199, 0.00199981)
-bones/11/rotation = Quaternion(3.57628e-07, -3.72529e-07, 5.96047e-08, 1)
+bones/11/rotation = Quaternion(0.0326222, 0.0775165, 0.204223, 0.975305)
 bones/11/scale = Vector3(1, 1, 1)
 bones/12/name = "LeftIndexIntermediate"
 bones/12/parent = 11
 bones/12/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.09777e-09, 0.0407, 1.25192e-08)
 bones/12/enabled = true
 bones/12/position = Vector3(-4.09777e-09, 0.0407, 1.25192e-08)
-bones/12/rotation = Quaternion(0, -1.19209e-07, 5.96046e-08, 1)
+bones/12/rotation = Quaternion(0.258819, 4.47035e-07, 5.06639e-07, 0.965926)
 bones/12/scale = Vector3(1, 1, 1)
 bones/13/name = "LeftIndexDistal"
 bones/13/parent = 12
 bones/13/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.07422e-09, 0.0348, 1.1684e-08)
 bones/13/enabled = true
 bones/13/position = Vector3(-2.07422e-09, 0.0348, 1.1684e-08)
-bones/13/rotation = Quaternion(0, 0, 5.96046e-08, 1)
+bones/13/rotation = Quaternion(-1.49012e-07, 2.68221e-07, -3.27826e-07, 1)
 bones/13/scale = Vector3(1, 1, 1)
 bones/14/name = "LeftMiddleProximal"
 bones/14/parent = 10
 bones/14/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00520003, 0.1216, -0.000400226)
 bones/14/enabled = true
 bones/14/position = Vector3(-0.00520003, 0.1216, -0.000400226)
-bones/14/rotation = Quaternion(3.12924e-07, -2.38419e-07, 5.96046e-08, 1)
+bones/14/rotation = Quaternion(0.0307896, 0.0865676, 0.032504, 0.995239)
 bones/14/scale = Vector3(1, 1, 1)
 bones/15/name = "LeftMiddleIntermediate"
 bones/15/parent = 14
 bones/15/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.002, 0.0423, 2.16216e-08)
 bones/15/enabled = true
 bones/15/position = Vector3(0.002, 0.0423, 2.16216e-08)
-bones/15/rotation = Quaternion(-2.98023e-08, -1.19209e-07, 2.98023e-08, 1)
+bones/15/rotation = Quaternion(0.258819, 4.61936e-07, 2.08616e-07, 0.965926)
 bones/15/scale = Vector3(1, 1, 1)
 bones/16/name = "LeftMiddleDistal"
 bones/16/parent = 15
 bones/16/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0015, 0.0339, 1.61587e-07)
 bones/16/enabled = true
 bones/16/position = Vector3(0.0015, 0.0339, 1.61587e-07)
-bones/16/rotation = Quaternion(0, -5.96047e-08, -2.98023e-08, 1)
+bones/16/rotation = Quaternion(-1.02818e-06, -2.98023e-08, -3.12924e-07, 1)
 bones/16/scale = Vector3(1, 1, 1)
 bones/17/name = "LeftLittleProximal"
 bones/17/parent = 10
 bones/17/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0408, 0.1077, 0.00159975)
 bones/17/enabled = true
 bones/17/position = Vector3(0.0408, 0.1077, 0.00159975)
-bones/17/rotation = Quaternion(3.42727e-07, -2.83122e-07, 2.98023e-08, 1)
+bones/17/rotation = Quaternion(0.332677, -0.0198166, -0.287246, 0.89801)
 bones/17/scale = Vector3(1, 1, 1)
 bones/18/name = "LeftLittleIntermediate"
 bones/18/parent = 17
 bones/18/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0027, 0.0402, 1.72182e-10)
 bones/18/enabled = true
 bones/18/position = Vector3(0.0027, 0.0402, 1.72182e-10)
-bones/18/rotation = Quaternion(0, -1.04308e-07, 5.96046e-08, 1)
+bones/18/rotation = Quaternion(0.25882, 3.12924e-07, -3.57628e-07, 0.965925)
 bones/18/scale = Vector3(1, 1, 1)
 bones/19/name = "LeftLittleDistal"
 bones/19/parent = 18
 bones/19/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00189999, 0.0276, 2.26585e-07)
 bones/19/enabled = true
 bones/19/position = Vector3(0.00189999, 0.0276, 2.26585e-07)
-bones/19/rotation = Quaternion(0, 0, 0, 1)
+bones/19/rotation = Quaternion(-1.56462e-06, 2.08616e-07, 1.05798e-06, 1)
 bones/19/scale = Vector3(1, 1, 1)
 bones/20/name = "LeftRingProximal"
 bones/20/parent = 10
 bones/20/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0171, 0.1191, -0.000100175)
 bones/20/enabled = true
 bones/20/position = Vector3(0.0171, 0.1191, -0.000100175)
-bones/20/rotation = Quaternion(2.83122e-07, -4.47035e-07, 5.96046e-08, 1)
+bones/20/rotation = Quaternion(0.147708, 0.015586, -0.0903655, 0.984771)
 bones/20/scale = Vector3(1, 1, 1)
 bones/21/name = "LeftRingIntermediate"
 bones/21/parent = 20
 bones/21/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00139999, 0.0393, -1.01033e-07)
 bones/21/enabled = true
 bones/21/position = Vector3(0.00139999, 0.0393, -1.01033e-07)
-bones/21/rotation = Quaternion(2.98023e-08, -8.9407e-08, 8.9407e-08, 1)
+bones/21/rotation = Quaternion(0.258819, -2.5332e-07, 1.49012e-07, 0.965926)
 bones/21/scale = Vector3(1, 1, 1)
 bones/22/name = "LeftRingDistal"
 bones/22/parent = 21
 bones/22/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00109999, 0.0309, -1.00829e-07)
 bones/22/enabled = true
 bones/22/position = Vector3(0.00109999, 0.0309, -1.00829e-07)
-bones/22/rotation = Quaternion(0, 0, -5.96046e-08, 1)
+bones/22/rotation = Quaternion(7.15256e-07, 3.12924e-07, -3.27826e-07, 1)
 bones/22/scale = Vector3(1, 1, 1)
 bones/23/name = "LeftThumbMetacarpal"
 bones/23/parent = 10
 bones/23/rest = Transform3D(0, -0.577, 0.816, 0, 0.816, 0.577, -1, 0, 0, -0.0336, 0.0272999, 0.0227998)
 bones/23/enabled = true
 bones/23/position = Vector3(-0.0336, 0.0272999, 0.0227998)
-bones/23/rotation = Quaternion(-0.214187, 0.673887, 0.214187, 0.673888)
+bones/23/rotation = Quaternion(-0.0638964, 0.668861, 0.337637, 0.659199)
 bones/23/scale = Vector3(1, 0.999392, 0.999392)
 bones/24/name = "LeftThumbProximal"
 bones/24/parent = 23
 bones/24/rest = Transform3D(1, 0, 0, 0, 1, 2.98023e-08, 0, -2.98023e-08, 1, -0.0191999, 0.0381664, 0.00529666)
 bones/24/enabled = true
 bones/24/position = Vector3(-0.0191999, 0.0381664, 0.00529666)
-bones/24/rotation = Quaternion(-1.3411e-07, -5.96046e-08, -5.96046e-08, 1)
+bones/24/rotation = Quaternion(0.0829044, 0.029606, -0.00309452, 0.996113)
 bones/24/scale = Vector3(1.00005, 0.999997, 0.999956)
 bones/25/name = "LeftThumbDistal"
 bones/25/parent = 24
 bones/25/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0219001, 0.0435322, 0.00602703)
 bones/25/enabled = true
 bones/25/position = Vector3(-0.0219001, 0.0435322, 0.00602703)
-bones/25/rotation = Quaternion(1.49012e-08, 7.45058e-08, 2.98023e-08, 1)
+bones/25/rotation = Quaternion(-1.19209e-07, 2.98023e-08, 0, 1)
 bones/25/scale = Vector3(1.00002, 0.999999, 0.999977)
 bones/26/name = "RightShoulder"
 bones/26/parent = 4
 bones/26/rest = Transform3D(0, -1, 0, 0, 0, 1, -1, 0, 0, -0.0188, 0.1431, 0.0763)
 bones/26/enabled = true
 bones/26/position = Vector3(-0.0188, 0.1431, 0.0763)
-bones/26/rotation = Quaternion(0.5, -0.5, -0.5, -0.5)
+bones/26/rotation = Quaternion(0.634203, -0.361842, -0.456471, -0.50842)
 bones/26/scale = Vector3(1, 1, 1)
 bones/27/name = "RightUpperArm"
 bones/27/parent = 26
 bones/27/rest = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0.1368, 0.1731, -0.0171001)
 bones/27/enabled = true
 bones/27/position = Vector3(0.1368, 0.1731, -0.0171001)
-bones/27/rotation = Quaternion(-1.3411e-07, 1, 7.45058e-08, 2.98023e-08)
+bones/27/rotation = Quaternion(0.337718, 0.912392, -0.231244, -0.00375153)
 bones/27/scale = Vector3(1, 1, 1)
 bones/28/name = "RightLowerArm"
 bones/28/parent = 27
 bones/28/rest = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -0.00469997, 0.2744, 1.64257e-07)
 bones/28/enabled = true
 bones/28/position = Vector3(-0.00469997, 0.2744, 1.64257e-07)
-bones/28/rotation = Quaternion(-1.36977e-07, 0.707107, -1.05367e-08, 0.707107)
+bones/28/rotation = Quaternion(0.532156, 0.465634, -0.532149, 0.465632)
 bones/28/scale = Vector3(1, 1, 1)
 bones/29/name = "RightHand"
 bones/29/parent = 28
 bones/29/rest = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -2.82989e-08, 0.2726, 0.00470005)
 bones/29/enabled = true
 bones/29/position = Vector3(-2.82989e-08, 0.2726, 0.00470005)
-bones/29/rotation = Quaternion(-1.87282e-07, -0.707107, -1.07746e-07, 0.707106)
+bones/29/rotation = Quaternion(-0.153, -0.794876, -0.18462, 0.557386)
 bones/29/scale = Vector3(1, 1, 1)
 bones/30/name = "RightIndexProximal"
 bones/30/parent = 29
 bones/30/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0309, 0.1199, 0.0019998)
 bones/30/enabled = true
 bones/30/position = Vector3(0.0309, 0.1199, 0.0019998)
-bones/30/rotation = Quaternion(3.8743e-07, 3.8743e-07, -8.9407e-08, 1)
+bones/30/rotation = Quaternion(0.0326244, -0.0775166, -0.204223, 0.975305)
 bones/30/scale = Vector3(1, 1, 1)
 bones/31/name = "RightIndexIntermediate"
 bones/31/parent = 30
 bones/31/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.56481e-10, 0.0407001, -1.06778e-07)
 bones/31/enabled = true
 bones/31/position = Vector3(-5.56481e-10, 0.0407001, -1.06778e-07)
-bones/31/rotation = Quaternion(-2.98023e-08, 1.19209e-07, -2.98023e-08, 1)
+bones/31/rotation = Quaternion(0.258819, -7.15256e-07, 2.6226e-06, 0.965926)
 bones/31/scale = Vector3(1, 1, 1)
 bones/32/name = "RightIndexDistal"
 bones/32/parent = 31
 bones/32/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.12197e-10, 0.0348, -1.06669e-07)
 bones/32/enabled = true
 bones/32/position = Vector3(-6.12197e-10, 0.0348, -1.06669e-07)
-bones/32/rotation = Quaternion(0, -1.49012e-08, -1.49012e-08, 1)
+bones/32/rotation = Quaternion(3.57628e-07, -5.21541e-07, -5.21541e-07, 1)
 bones/32/scale = Vector3(1, 1, 1)
 bones/33/name = "RightMiddleProximal"
 bones/33/parent = 29
 bones/33/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00520003, 0.1216, -0.000400235)
 bones/33/enabled = true
 bones/33/position = Vector3(0.00520003, 0.1216, -0.000400235)
-bones/33/rotation = Quaternion(4.02331e-07, 2.23517e-07, -5.96046e-08, 1)
+bones/33/rotation = Quaternion(0.0307896, -0.0865678, -0.0325042, 0.995239)
 bones/33/scale = Vector3(1, 1, 1)
 bones/34/name = "RightMiddleIntermediate"
 bones/34/parent = 33
 bones/34/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00199999, 0.0423, -9.59494e-08)
 bones/34/enabled = true
 bones/34/position = Vector3(-0.00199999, 0.0423, -9.59494e-08)
-bones/34/rotation = Quaternion(-2.98023e-08, 1.19209e-07, -2.98023e-08, 1)
+bones/34/rotation = Quaternion(0.258819, -6.55651e-07, 1.60933e-06, 0.965926)
 bones/34/scale = Vector3(1, 1, 1)
 bones/35/name = "RightMiddleDistal"
 bones/35/parent = 34
 bones/35/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0015, 0.0339, 4.30116e-08)
 bones/35/enabled = true
 bones/35/position = Vector3(-0.0015, 0.0339, 4.30116e-08)
-bones/35/rotation = Quaternion(1.49012e-08, 1.49012e-08, 4.47035e-08, 1)
+bones/35/rotation = Quaternion(5.21541e-07, -6.25849e-07, 9.83477e-07, 1)
 bones/35/scale = Vector3(1, 1, 1)
 bones/36/name = "RightLittleProximal"
 bones/36/parent = 29
 bones/36/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0408, 0.1077, 0.00159975)
 bones/36/enabled = true
 bones/36/position = Vector3(-0.0408, 0.1077, 0.00159975)
-bones/36/rotation = Quaternion(3.8743e-07, 3.27826e-07, -8.9407e-08, 1)
+bones/36/rotation = Quaternion(0.332676, 0.0198154, 0.287248, 0.89801)
 bones/36/scale = Vector3(1, 1, 1)
 bones/37/name = "RightLittleIntermediate"
 bones/37/parent = 36
 bones/37/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00269999, 0.0402, -4.73217e-11)
 bones/37/enabled = true
 bones/37/position = Vector3(-0.00269999, 0.0402, -4.73217e-11)
-bones/37/rotation = Quaternion(-1.49012e-08, 1.3411e-07, -7.45058e-08, 1)
+bones/37/rotation = Quaternion(0.25882, -8.49366e-07, 2.29478e-06, 0.965926)
 bones/37/scale = Vector3(1, 1, 1)
 bones/38/name = "RightLittleDistal"
 bones/38/parent = 37
 bones/38/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00189999, 0.0276, -1.04179e-08)
 bones/38/enabled = true
 bones/38/position = Vector3(-0.00189999, 0.0276, -1.04179e-08)
-bones/38/rotation = Quaternion(1.49012e-08, 1.49012e-08, 0, 1)
+bones/38/rotation = Quaternion(-1.57952e-06, -2.68221e-07, -2.68221e-07, 1)
 bones/38/scale = Vector3(1, 1, 1)
 bones/39/name = "RightRingProximal"
 bones/39/parent = 29
 bones/39/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0171, 0.1191, -0.000100181)
 bones/39/enabled = true
 bones/39/position = Vector3(-0.0171, 0.1191, -0.000100181)
-bones/39/rotation = Quaternion(3.8743e-07, 3.27826e-07, -8.9407e-08, 1)
+bones/39/rotation = Quaternion(0.147707, -0.0155868, 0.0903673, 0.984771)
 bones/39/scale = Vector3(1, 1, 1)
 bones/40/name = "RightRingIntermediate"
 bones/40/parent = 39
 bones/40/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00139999, 0.0393001, -2.17475e-07)
 bones/40/enabled = true
 bones/40/position = Vector3(-0.00139999, 0.0393001, -2.17475e-07)
-bones/40/rotation = Quaternion(-1.49012e-08, 1.04308e-07, -2.98023e-08, 1)
+bones/40/rotation = Quaternion(0.25882, -1.51992e-06, 1.51992e-06, 0.965926)
 bones/40/scale = Vector3(1, 1, 1)
 bones/41/name = "RightRingDistal"
 bones/41/parent = 40
 bones/41/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0011, 0.0309, -9.9465e-08)
 bones/41/enabled = true
 bones/41/position = Vector3(-0.0011, 0.0309, -9.9465e-08)
-bones/41/rotation = Quaternion(0, 5.96046e-08, 0, 1)
+bones/41/rotation = Quaternion(-8.9407e-07, -1.19209e-07, 1.19209e-07, 1)
 bones/41/scale = Vector3(1, 1, 1)
 bones/42/name = "RightThumbMetacarpal"
 bones/42/parent = 29
 bones/42/rest = Transform3D(0, 0.577, -0.816, 0, 0.816, 0.577, 1, 0, 0, 0.0336, 0.0273, 0.0227998)
 bones/42/enabled = true
 bones/42/position = Vector3(0.0336, 0.0273, 0.0227998)
-bones/42/rotation = Quaternion(-0.214187, -0.673887, -0.214187, 0.673887)
+bones/42/rotation = Quaternion(-0.0638954, -0.668862, -0.337637, 0.659198)
 bones/42/scale = Vector3(1, 0.999392, 0.999392)
 bones/43/name = "RightThumbProximal"
 bones/43/parent = 42
 bones/43/rest = Transform3D(1, 0, 0, 0, 1, 2.98023e-08, 0, -2.98023e-08, 1, 0.0192, 0.0381665, 0.00529661)
 bones/43/enabled = true
 bones/43/position = Vector3(0.0192, 0.0381665, 0.00529661)
-bones/43/rotation = Quaternion(1.49012e-08, 8.9407e-08, -5.96047e-08, 1)
+bones/43/rotation = Quaternion(0.0829051, -0.0296067, 0.00309616, 0.996113)
 bones/43/scale = Vector3(1.00005, 0.999996, 0.999956)
 bones/44/name = "RightThumbDistal"
 bones/44/parent = 43
 bones/44/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0219, 0.0435322, 0.00602711)
 bones/44/enabled = true
 bones/44/position = Vector3(0.0219, 0.0435322, 0.00602711)
-bones/44/rotation = Quaternion(5.96046e-08, -2.98023e-08, -2.98023e-08, 1)
+bones/44/rotation = Quaternion(-6.10948e-07, -7.45058e-08, -4.17232e-07, 1)
 bones/44/scale = Vector3(1.00002, 0.999999, 0.999976)
 bones/45/name = "LeftUpperLeg"
 bones/45/parent = 1
 bones/45/rest = Transform3D(-1, 0, 0, 0, -1, 0, 0, 0, 1, 0.089, 0.0154, 0.0515)
 bones/45/enabled = true
 bones/45/position = Vector3(0.089, 0.0154, 0.0515)
-bones/45/rotation = Quaternion(0, 2.11596e-06, 1, 0)
+bones/45/rotation = Quaternion(0.221581, 0.789114, 0.572852, -0.00640302)
 bones/45/scale = Vector3(1, 1, 1)
 bones/46/name = "LeftLowerLeg"
 bones/46/parent = 45
 bones/46/rest = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, -7.45058e-09, 0.4003, -0.00279989)
 bones/46/enabled = true
 bones/46/position = Vector3(-7.45058e-09, 0.4003, -0.00279989)
-bones/46/rotation = Quaternion(4.95138e-09, 1, -3.83006e-06, 6.33105e-10)
+bones/46/rotation = Quaternion(1.78814e-07, 0.500885, -0.865514, -2.08616e-07)
 bones/46/scale = Vector3(1, 1, 1)
 bones/47/name = "LeftFoot"
 bones/47/parent = 46
 bones/47/rest = Transform3D(-1, 0, 0, 0, 0, -1, 0, -1, 0, -7.21818e-09, 0.4281, 0.0343999)
 bones/47/enabled = true
 bones/47/position = Vector3(-7.21818e-09, 0.4281, 0.0343999)
-bones/47/rotation = Quaternion(2.9612e-09, 0.707105, -0.707108, -3.45511e-09)
+bones/47/rotation = Quaternion(-0.162131, 0.757987, -0.621079, -0.115892)
 bones/47/scale = Vector3(1, 1, 1)
 bones/48/name = "LeftToes"
 bones/48/parent = 47
 bones/48/rest = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, -3.93385e-09, 0.149, -0.0885)
 bones/48/enabled = true
 bones/48/position = Vector3(-3.93385e-09, 0.149, -0.0885)
-bones/48/rotation = Quaternion(4.40968e-08, 1, 5.96046e-08, 1.94528e-08)
+bones/48/rotation = Quaternion(-4.21468e-08, 1, 4.76837e-07, -8.42937e-08)
 bones/48/scale = Vector3(1, 1, 1)
 bones/49/name = "RightUpperLeg"
 bones/49/parent = 1
 bones/49/rest = Transform3D(-1, 0, 0, 0, -1, 0, 0, 0, 1, -0.089, 0.0154, 0.0515)
 bones/49/enabled = true
 bones/49/position = Vector3(-0.089, 0.0154, 0.0515)
-bones/49/rotation = Quaternion(-6.51094e-11, 2.11596e-06, 1, -9.30579e-09)
+bones/49/rotation = Quaternion(-0.190103, 0.218488, 0.957115, 0.00736596)
 bones/49/scale = Vector3(1, 1, 1)
 bones/50/name = "RightLowerLeg"
 bones/50/parent = 49
 bones/50/rest = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 7.45058e-09, 0.4003, -0.00279989)
 bones/50/enabled = true
 bones/50/position = Vector3(7.45058e-09, 0.4003, -0.00279989)
-bones/50/rotation = Quaternion(5.28462e-09, 1, -3.83006e-06, 2.7047e-10)
+bones/50/rotation = Quaternion(9.49949e-06, 0.949649, -0.313316, 3.68059e-06)
 bones/50/scale = Vector3(1, 1, 1)
 bones/51/name = "RightFoot"
 bones/51/parent = 50
 bones/51/rest = Transform3D(-1, 0, 0, 0, 0, -1, 0, -1, 0, 7.68326e-09, 0.4281, 0.0343999)
 bones/51/enabled = true
 bones/51/position = Vector3(7.68326e-09, 0.4281, 0.0343999)
-bones/51/rotation = Quaternion(-3.08243e-09, 0.707105, -0.707108, 3.16474e-09)
+bones/51/rotation = Quaternion(0.0954177, 0.825093, -0.554205, -0.0545411)
 bones/51/scale = Vector3(1, 1, 1)
 bones/52/name = "RightToes"
 bones/52/parent = 51
 bones/52/rest = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 3.51713e-09, 0.149, -0.0885)
 bones/52/enabled = true
 bones/52/position = Vector3(3.51713e-09, 0.149, -0.0885)
-bones/52/rotation = Quaternion(4.40968e-08, 1, 5.96046e-08, 1.94528e-08)
+bones/52/rotation = Quaternion(7.40204e-07, 1, -1.19209e-07, 9.35133e-07)
 bones/52/scale = Vector3(1, 1, 1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerBody/Model/Visuals"]
@@ -946,13 +906,7 @@ libraries = {
 &"Jump_B": ExtResource("30_mmwog"),
 &"Walk_Root": ExtResource("14_x7c3f")
 }
-
-[node name="AnimationTree" type="AnimationTree" parent="PlayerBody/Model/Visuals"]
-root_motion_track = NodePath("%Skeleton:Root")
-root_motion_local = false
-tree_root = SubResource("AnimationNodeStateMachine_e7oew")
-anim_player = NodePath("../AnimationPlayer")
-parameters/JogBlendSpace/blend_position = Vector2(-0.412883, -0.29139)
+script = ExtResource("33_55jnj")
 
 [node name="Controller" type="Node" parent="PlayerBody"]
 script = ExtResource("11_32hag")
@@ -974,46 +928,89 @@ initial_state = NodePath("Grounded")
 script = ExtResource("21_s7qer")
 initial_state = NodePath("Idling")
 
-[node name="Walking" type="Node" parent="PlayerBody/StateChart/Root/FixedMovement/Grounded"]
-script = ExtResource("22_g4c7l")
-
 [node name="Sprinting" type="Node" parent="PlayerBody/StateChart/Root/FixedMovement/Grounded"]
 script = ExtResource("22_g4c7l")
+
+[node name="ToJogging" type="Node" parent="PlayerBody/StateChart/Root/FixedMovement/Grounded/Sprinting"]
+script = ExtResource("17_tqiix")
+to = NodePath("../../Jogging")
+guard = SubResource("Resource_n0b8q")
+delay_in_seconds = "0.0"
+
+[node name="ToIdling" type="Node" parent="PlayerBody/StateChart/Root/FixedMovement/Grounded/Sprinting"]
+script = ExtResource("17_tqiix")
+to = NodePath("../../Idling")
+guard = SubResource("Resource_jfgyi")
+delay_in_seconds = "0.0"
 
 [node name="Jogging" type="Node" parent="PlayerBody/StateChart/Root/FixedMovement/Grounded"]
 script = ExtResource("22_g4c7l")
 
+[node name="ToSprinting" type="Node" parent="PlayerBody/StateChart/Root/FixedMovement/Grounded/Jogging"]
+script = ExtResource("17_tqiix")
+to = NodePath("../../Sprinting")
+guard = SubResource("Resource_237xx")
+delay_in_seconds = "0.0"
+
+[node name="ToWalking" type="Node" parent="PlayerBody/StateChart/Root/FixedMovement/Grounded/Jogging"]
+script = ExtResource("17_tqiix")
+to = NodePath("../../Walking")
+guard = SubResource("Resource_wpyo2")
+delay_in_seconds = "0.0"
+
+[node name="ToIdling" type="Node" parent="PlayerBody/StateChart/Root/FixedMovement/Grounded/Jogging"]
+script = ExtResource("17_tqiix")
+to = NodePath("../../Idling")
+guard = SubResource("Resource_7crtr")
+delay_in_seconds = "0.0"
+
 [node name="Idling" type="Node" parent="PlayerBody/StateChart/Root/FixedMovement/Grounded"]
 script = ExtResource("22_g4c7l")
 
-[node name="ToJogging" type="Node" parent="PlayerBody/StateChart/Root/FixedMovement/Grounded"]
+[node name="ToSprinting" type="Node" parent="PlayerBody/StateChart/Root/FixedMovement/Grounded/Idling"]
 script = ExtResource("17_tqiix")
-to = NodePath("../Jogging")
-event = &"move_input"
+to = NodePath("../../Sprinting")
+guard = SubResource("Resource_vgvch")
 delay_in_seconds = "0.0"
 
-[node name="ToIdling" type="Node" parent="PlayerBody/StateChart/Root/FixedMovement/Grounded"]
+[node name="ToWalking" type="Node" parent="PlayerBody/StateChart/Root/FixedMovement/Grounded/Idling"]
 script = ExtResource("17_tqiix")
-to = NodePath("../Idling")
-event = &"no_move_input"
+to = NodePath("../../Walking")
+guard = SubResource("Resource_a1u5o")
 delay_in_seconds = "0.0"
 
-[node name="ToSprinting" type="Node" parent="PlayerBody/StateChart/Root/FixedMovement/Grounded"]
+[node name="ToJogging" type="Node" parent="PlayerBody/StateChart/Root/FixedMovement/Grounded/Idling"]
 script = ExtResource("17_tqiix")
-to = NodePath("../Sprinting")
-event = &"run_input"
+to = NodePath("../../Jogging")
+guard = SubResource("Resource_3dxkp")
 delay_in_seconds = "0.0"
 
-[node name="ToWalking" type="Node" parent="PlayerBody/StateChart/Root/FixedMovement/Grounded"]
+[node name="Walking" type="Node" parent="PlayerBody/StateChart/Root/FixedMovement/Grounded"]
+script = ExtResource("22_g4c7l")
+
+[node name="ToJogging" type="Node" parent="PlayerBody/StateChart/Root/FixedMovement/Grounded/Walking"]
 script = ExtResource("17_tqiix")
-to = NodePath("../Walking")
-event = &"walk_input"
+to = NodePath("../../Jogging")
+guard = SubResource("Resource_6wior")
+delay_in_seconds = "0.0"
+
+[node name="ToIdling" type="Node" parent="PlayerBody/StateChart/Root/FixedMovement/Grounded/Walking"]
+script = ExtResource("17_tqiix")
+to = NodePath("../../Idling")
+guard = SubResource("Resource_p5tca")
 delay_in_seconds = "0.0"
 
 [node name="ToJumping" type="Node" parent="PlayerBody/StateChart/Root/FixedMovement/Grounded"]
 script = ExtResource("17_tqiix")
 to = NodePath("../../../Jumping")
 event = &"jump_input"
+guard = SubResource("Resource_pjwc4")
+delay_in_seconds = "0.0"
+
+[node name="ToFalling" type="Node" parent="PlayerBody/StateChart/Root/FixedMovement/Grounded"]
+script = ExtResource("17_tqiix")
+to = NodePath("../../Falling")
+guard = SubResource("Resource_35wys")
 delay_in_seconds = "0.0"
 
 [node name="Falling" type="Node" parent="PlayerBody/StateChart/Root/FixedMovement"]
@@ -1022,7 +1019,7 @@ script = ExtResource("22_g4c7l")
 [node name="ToLanding" type="Node" parent="PlayerBody/StateChart/Root/FixedMovement/Falling"]
 script = ExtResource("17_tqiix")
 to = NodePath("../../Landing")
-event = &"grounded"
+guard = SubResource("Resource_jbx34")
 delay_in_seconds = "0.0"
 
 [node name="Landing" type="Node" parent="PlayerBody/StateChart/Root/FixedMovement"]
@@ -1031,19 +1028,13 @@ script = ExtResource("22_g4c7l")
 [node name="ToGrounded" type="Node" parent="PlayerBody/StateChart/Root/FixedMovement/Landing"]
 script = ExtResource("17_tqiix")
 to = NodePath("../../Grounded")
-event = &"grounded"
-delay_in_seconds = "0.0"
+guard = SubResource("Resource_s3g0c")
+delay_in_seconds = "0.01"
 
 [node name="ToFreeMovement" type="Node" parent="PlayerBody/StateChart/Root/FixedMovement"]
 script = ExtResource("17_tqiix")
 to = NodePath("../../FreeMovement")
 event = &"free_movement"
-delay_in_seconds = "0.0"
-
-[node name="ToFalling" type="Node" parent="PlayerBody/StateChart/Root/FixedMovement"]
-script = ExtResource("17_tqiix")
-to = NodePath("../Falling")
-event = &"airborne"
 delay_in_seconds = "0.0"
 
 [node name="FreeMovement" type="Node" parent="PlayerBody/StateChart/Root"]
@@ -1057,37 +1048,73 @@ initial_state = NodePath("Idling")
 [node name="Sprinting" type="Node" parent="PlayerBody/StateChart/Root/FreeMovement/Grounded"]
 script = ExtResource("22_g4c7l")
 
+[node name="ToJogging" type="Node" parent="PlayerBody/StateChart/Root/FreeMovement/Grounded/Sprinting"]
+script = ExtResource("17_tqiix")
+to = NodePath("../../Jogging")
+guard = SubResource("Resource_a2xo5")
+delay_in_seconds = "0.0"
+
+[node name="ToIdling" type="Node" parent="PlayerBody/StateChart/Root/FreeMovement/Grounded/Sprinting"]
+script = ExtResource("17_tqiix")
+to = NodePath("../../Idling")
+guard = SubResource("Resource_fmu53")
+delay_in_seconds = "0.0"
+
 [node name="Jogging" type="Node" parent="PlayerBody/StateChart/Root/FreeMovement/Grounded"]
 script = ExtResource("22_g4c7l")
+
+[node name="ToSprinting" type="Node" parent="PlayerBody/StateChart/Root/FreeMovement/Grounded/Jogging"]
+script = ExtResource("17_tqiix")
+to = NodePath("../../Sprinting")
+guard = SubResource("Resource_dx5ib")
+delay_in_seconds = "0.0"
+
+[node name="ToWalking" type="Node" parent="PlayerBody/StateChart/Root/FreeMovement/Grounded/Jogging"]
+script = ExtResource("17_tqiix")
+to = NodePath("../../Walking")
+guard = SubResource("Resource_j55il")
+delay_in_seconds = "0.0"
+
+[node name="ToIdling" type="Node" parent="PlayerBody/StateChart/Root/FreeMovement/Grounded/Jogging"]
+script = ExtResource("17_tqiix")
+to = NodePath("../../Idling")
+guard = SubResource("Resource_fjxoa")
+delay_in_seconds = "0.0"
 
 [node name="Idling" type="Node" parent="PlayerBody/StateChart/Root/FreeMovement/Grounded"]
 script = ExtResource("22_g4c7l")
 
+[node name="ToSprinting" type="Node" parent="PlayerBody/StateChart/Root/FreeMovement/Grounded/Idling"]
+script = ExtResource("17_tqiix")
+to = NodePath("../../Sprinting")
+guard = SubResource("Resource_hjies")
+delay_in_seconds = "0.0"
+
+[node name="ToWalking" type="Node" parent="PlayerBody/StateChart/Root/FreeMovement/Grounded/Idling"]
+script = ExtResource("17_tqiix")
+to = NodePath("../../Walking")
+guard = SubResource("Resource_j55il")
+delay_in_seconds = "0.0"
+
+[node name="ToJogging" type="Node" parent="PlayerBody/StateChart/Root/FreeMovement/Grounded/Idling"]
+script = ExtResource("17_tqiix")
+to = NodePath("../../Jogging")
+guard = SubResource("Resource_gswnw")
+delay_in_seconds = "0.0"
+
 [node name="Walking" type="Node" parent="PlayerBody/StateChart/Root/FreeMovement/Grounded"]
 script = ExtResource("22_g4c7l")
 
-[node name="ToJogging" type="Node" parent="PlayerBody/StateChart/Root/FreeMovement/Grounded"]
+[node name="ToJogging" type="Node" parent="PlayerBody/StateChart/Root/FreeMovement/Grounded/Walking"]
 script = ExtResource("17_tqiix")
-to = NodePath("../Jogging")
-event = &"move_input"
+to = NodePath("../../Jogging")
+guard = SubResource("Resource_xcnuv")
 delay_in_seconds = "0.0"
 
-[node name="ToSprinting" type="Node" parent="PlayerBody/StateChart/Root/FreeMovement/Grounded"]
+[node name="ToIdling" type="Node" parent="PlayerBody/StateChart/Root/FreeMovement/Grounded/Walking"]
 script = ExtResource("17_tqiix")
-to = NodePath("../Sprinting")
-event = &"run_input"
-delay_in_seconds = "0.0"
-
-[node name="ToIdling" type="Node" parent="PlayerBody/StateChart/Root/FreeMovement/Grounded"]
-script = ExtResource("17_tqiix")
-to = NodePath("../Idling")
-event = &"no_move_input"
-delay_in_seconds = "0.0"
-
-[node name="ToWalking" type="Node" parent="PlayerBody/StateChart/Root/FreeMovement/Grounded"]
-script = ExtResource("17_tqiix")
-to = NodePath("../Walking")
-event = &"walk_input"
+to = NodePath("../../Idling")
+guard = SubResource("Resource_mmwog")
 delay_in_seconds = "0.0"
 
 [node name="ToJumping" type="Node" parent="PlayerBody/StateChart/Root/FreeMovement/Grounded"]
@@ -1096,13 +1123,19 @@ to = NodePath("../../../Jumping")
 event = &"jump_input"
 delay_in_seconds = "0.0"
 
+[node name="ToFalling" type="Node" parent="PlayerBody/StateChart/Root/FreeMovement/Grounded"]
+script = ExtResource("17_tqiix")
+to = NodePath("../../Falling")
+guard = SubResource("Resource_w7j2h")
+delay_in_seconds = "0.0"
+
 [node name="Falling" type="Node" parent="PlayerBody/StateChart/Root/FreeMovement"]
 script = ExtResource("22_g4c7l")
 
 [node name="ToLanding" type="Node" parent="PlayerBody/StateChart/Root/FreeMovement/Falling"]
 script = ExtResource("17_tqiix")
 to = NodePath("../../Landing")
-event = &"grounded"
+guard = SubResource("Resource_art4l")
 delay_in_seconds = "0.0"
 
 [node name="Landing" type="Node" parent="PlayerBody/StateChart/Root/FreeMovement"]
@@ -1111,19 +1144,13 @@ script = ExtResource("22_g4c7l")
 [node name="ToGrounded" type="Node" parent="PlayerBody/StateChart/Root/FreeMovement/Landing"]
 script = ExtResource("17_tqiix")
 to = NodePath("../../Grounded")
-event = &"grounded"
-delay_in_seconds = "0.0"
+guard = SubResource("Resource_8pxes")
+delay_in_seconds = "0.05"
 
 [node name="ToFixedMovement" type="Node" parent="PlayerBody/StateChart/Root/FreeMovement"]
 script = ExtResource("17_tqiix")
 to = NodePath("../../FixedMovement")
 event = &"fixed_movement"
-delay_in_seconds = "0.0"
-
-[node name="ToFalling" type="Node" parent="PlayerBody/StateChart/Root/FreeMovement"]
-script = ExtResource("17_tqiix")
-to = NodePath("../Falling")
-event = &"airborne"
 delay_in_seconds = "0.0"
 
 [node name="Jumping" type="Node" parent="PlayerBody/StateChart/Root"]
@@ -1143,7 +1170,6 @@ delay_in_seconds = "0.0"
 
 [node name="StateChartDebugger" parent="PlayerBody" instance=ExtResource("18_e7oew")]
 offset_left = 770.0
-offset_top = 395.0
 initial_node_to_watch = NodePath("..")
 
 [connection signal="state_entered" from="PlayerBody/StateChart/Root/FixedMovement" to="PlayerBody/Model/Actions/FixedMovement" method="_on_fixed_movement_state_entered"]
@@ -1151,6 +1177,10 @@ initial_node_to_watch = NodePath("..")
 [connection signal="state_physics_processing" from="PlayerBody/StateChart/Root/FixedMovement/Grounded/Jogging" to="PlayerBody/Model/Actions/FixedMovement/FixedJogging" method="_on_jogging_state_physics_processing"]
 [connection signal="state_entered" from="PlayerBody/StateChart/Root/FixedMovement/Grounded/Idling" to="PlayerBody/Model/Actions/FixedMovement/FixedIdling" method="_on_idling_state_entered"]
 [connection signal="state_physics_processing" from="PlayerBody/StateChart/Root/FixedMovement/Grounded/Idling" to="PlayerBody/Model/Actions/FixedMovement/FixedIdling" method="_on_idling_state_physics_processing"]
+[connection signal="state_entered" from="PlayerBody/StateChart/Root/FixedMovement/Falling" to="PlayerBody/Model/Actions/FixedMovement/FixedFalling" method="_on_falling_state_entered"]
+[connection signal="state_physics_processing" from="PlayerBody/StateChart/Root/FixedMovement/Falling" to="PlayerBody/Model/Actions/FixedMovement/FixedFalling" method="_on_falling_state_physics_processing"]
+[connection signal="state_entered" from="PlayerBody/StateChart/Root/FixedMovement/Landing" to="PlayerBody/Model/Actions/FixedMovement/FixedLanding" method="_on_landing_state_entered"]
+[connection signal="state_physics_processing" from="PlayerBody/StateChart/Root/FixedMovement/Landing" to="PlayerBody/Model/Actions/FixedMovement/FixedLanding" method="_on_landing_state_physics_processing"]
 [connection signal="state_entered" from="PlayerBody/StateChart/Root/FreeMovement/Grounded/Sprinting" to="PlayerBody/Model/Actions/FreeMovement/FreeSprinting" method="_on_sprinting_state_entered"]
 [connection signal="state_physics_processing" from="PlayerBody/StateChart/Root/FreeMovement/Grounded/Sprinting" to="PlayerBody/Model/Actions/FreeMovement/FreeSprinting" method="_on_sprinting_state_physics_processing"]
 [connection signal="state_entered" from="PlayerBody/StateChart/Root/FreeMovement/Grounded/Jogging" to="PlayerBody/Model/Actions/FreeMovement/FreeJogging" method="_on_jogging_state_entered"]

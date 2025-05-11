@@ -1,7 +1,6 @@
 extends Node3D
 
 @onready var pitch_node = $Yaw/Pitch
-@onready var _camera_arm = $Yaw/Pitch/SpringArm3D
 @onready var camera = $Yaw/Pitch/SpringArm3D/Camera3D
 
 @export var pitch_input: GUIDEAction

@@ -3,26 +3,29 @@ extends Node
 
 @onready var player := $".."
 
+var moving := false
+var airborne := false
+var grounded := false
+var sprinting := false
+var walking := false
+
 
 func _process(delta: float) -> void:
-	if player.move_input.value_axis_3d.normalized() != Vector3.ZERO:
-		player.state_chart.send_event("move_input")
-	else:
-		player.state_chart.send_event("no_move_input")
+	moving = player.move_input.value_axis_3d.normalized() != Vector3.ZERO
+	player.state_chart.set_expression_property("moving", moving)
 	
 	if player.jump_input.is_triggered():
 		player.state_chart.send_event("jump_input")
 	
-	if not player.is_on_floor():
-		player.state_chart.send_event("airborne")
-	else:
-		player.state_chart.send_event("grounded")
+	airborne = !player.is_on_floor()
+	grounded = player.is_on_floor()
+	player.state_chart.set_expression_property("airborne", airborne)
+	player.state_chart.set_expression_property("grounded", grounded)
 
-	if player.run_input.is_triggered() and player.move_input.value_axis_3d.normalized() != Vector3.ZERO:
-		player.state_chart.send_event("run_input")
-	
-	if player.walk_input.is_triggered() and player.move_input.value_axis_3d.normalized() != Vector3.ZERO:
-		player.state_chart.send_event("walk_input")
+	sprinting = player.run_input.is_triggered()
+	walking = player.walk_input.is_triggered()
+	player.state_chart.set_expression_property("sprinting", sprinting)
+	player.state_chart.set_expression_property("walking", walking)
 		
 	_camera_input_handler()
 

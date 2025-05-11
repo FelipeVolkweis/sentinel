@@ -6,4 +6,5 @@ func _on_jogging_state_physics_processing(delta: float) -> void:
 
 
 func _on_jogging_state_entered() -> void:
-	animation_fsm.travel("Jog")
+	#animation_fsm.travel("Jog")
+	animator.animate("jog")

@@ -6,4 +6,4 @@ func _on_walking_state_physics_processing(delta: float) -> void:
 
 
 func _on_walking_state_entered() -> void:
-	animation_fsm.travel("Walk")
+	animator.animate("walk")

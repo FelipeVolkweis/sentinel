@@ -6,7 +6,7 @@ extends CharacterBody3D
 @export var movement_acceleration: float = 25.0
 
 @export var rotation_speed: float = 8.0
-@export var jump_speed: float = 8.0
+@export var jump_speed: float = 10.0
 @export var deceleration: float = 15.0
 @export var air_control: float = 1.0
 
@@ -38,6 +38,17 @@ func _ready() -> void:
 	fixed_camera.current = false
 	GUIDE.enable_mapping_context(regular_3rd_person)
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	_ready_state_chart()
+
+
+func _ready_state_chart() -> void:
+	state_chart.set_expression_property("moving", false)
+
+	state_chart.set_expression_property("airborne", false)
+	state_chart.set_expression_property("grounded", false)
+
+	state_chart.set_expression_property("sprinting", false)
+	state_chart.set_expression_property("walking", false)
 
 
 func _physics_process(delta: float) -> void:

@@ -6,4 +6,5 @@ func _on_sprinting_state_physics_processing(delta: float) -> void:
 
 
 func _on_sprinting_state_entered() -> void:
-	animation_fsm.travel("Sprint")
+	#animation_fsm.travel("Sprint")
+	animator.animate("sprint")

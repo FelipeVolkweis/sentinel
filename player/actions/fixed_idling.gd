@@ -8,4 +8,4 @@ func _on_idling_state_physics_processing(delta: float) -> void:
 
 
 func _on_idling_state_entered() -> void:
-	animation_fsm.travel("Idle")
+	animator.animate("idle")
