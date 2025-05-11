@@ -1,41 +1,31 @@
-[gd_scene load_steps=72 format=4 uid="uid://yxpgihmcjafi"]
+[gd_scene load_steps=51 format=4 uid="uid://yxpgihmcjafi"]
 
-[ext_resource type="PackedScene" uid="uid://c3xrmu4sfxxc1" path="res://camera/fixed_3rd_person/fixed_3rd_person.tscn" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://j8b0mb6i5g6l" path="res://player/player_body.gd" id="1_yw30f"]
 [ext_resource type="Resource" uid="uid://def3mva7m32tk" path="res://player/input/regular_3rd_person.tres" id="2_rgyib"]
 [ext_resource type="Resource" uid="uid://bbdd6yyfhm0ql" path="res://player/input/walk_input.tres" id="7_1so5t"]
-[ext_resource type="Resource" uid="uid://bx0426rmljir" path="res://player/input/run_input.tres" id="7_e7oew"]
+[ext_resource type="Resource" uid="uid://bx0426rmljir" path="res://player/input/sprint_input.tres" id="7_e7oew"]
 [ext_resource type="Resource" uid="uid://dbpebj8gfde3o" path="res://player/input/camera_toggle_input.tres" id="7_yllr7"]
 [ext_resource type="Script" uid="uid://op1an1e6733f" path="res://player/controller.gd" id="11_32hag"]
-[ext_resource type="Resource" uid="uid://5h8t3ewrtxnk" path="res://player/input/pitch_input.tres" id="11_art4l"]
 [ext_resource type="Script" uid="uid://ddk8isno1f6g7" path="res://player/actions/base_action.gd" id="12_1s1yo"]
-[ext_resource type="Script" uid="uid://dr3vnw6upjn7p" path="res://player/actions/free_jumping.gd" id="12_2uvqg"]
+[ext_resource type="Script" uid="uid://dr3vnw6upjn7p" path="res://player/actions/jumping.gd" id="12_2uvqg"]
 [ext_resource type="PackedScene" uid="uid://gll8qeabbqk2" path="res://camera/free_3rd_person/free_3rd_person.tscn" id="12_ebec5"]
-[ext_resource type="Script" uid="uid://bl2uhc30m50qs" path="res://player/actions/free_movement.gd" id="14_a2xo5"]
-[ext_resource type="Script" uid="uid://bsft6kuoyojb8" path="res://player/actions/free_falling.gd" id="14_pnw6m"]
+[ext_resource type="Script" uid="uid://bsft6kuoyojb8" path="res://player/actions/falling.gd" id="14_pnw6m"]
 [ext_resource type="AnimationLibrary" uid="uid://c8j0dmhdav7qt" path="res://assets/humanoid/walk/Walk_Root.glb" id="14_x7c3f"]
-[ext_resource type="Script" uid="uid://w1uc8y35hjmc" path="res://player/actions/free_landing.gd" id="15_1so5t"]
-[ext_resource type="Script" uid="uid://dudv2ie5mdal6" path="res://player/actions/free_walking.gd" id="16_55jnj"]
+[ext_resource type="Script" uid="uid://w1uc8y35hjmc" path="res://player/actions/landing.gd" id="15_1so5t"]
+[ext_resource type="Script" uid="uid://dudv2ie5mdal6" path="res://player/actions/walking.gd" id="16_55jnj"]
 [ext_resource type="Resource" uid="uid://f6mn5xbrow4b" path="res://player/input/jump_input.tres" id="16_g4c7l"]
-[ext_resource type="Script" uid="uid://b3yalfhpdjdo4" path="res://player/actions/free_idling.gd" id="17_dx5ib"]
+[ext_resource type="Script" uid="uid://b3yalfhpdjdo4" path="res://player/actions/idling.gd" id="17_dx5ib"]
 [ext_resource type="Resource" uid="uid://c3tqa78qbfpns" path="res://player/input/move_input.tres" id="17_knn7v"]
 [ext_resource type="Script" uid="uid://cbcaru6rjnh0d" path="res://addons/godot_state_charts/transition.gd" id="17_tqiix"]
 [ext_resource type="Resource" uid="uid://c6sjcmj2xla6p" path="res://player/input/yaw_input.tres" id="18_7pqkx"]
-[ext_resource type="Script" uid="uid://bqtp36kkehtyw" path="res://player/actions/free_jogging.gd" id="18_a2xo5"]
+[ext_resource type="Script" uid="uid://bqtp36kkehtyw" path="res://player/actions/jogging.gd" id="18_a2xo5"]
 [ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="18_e7oew"]
-[ext_resource type="Script" uid="uid://cestmxdejpjfr" path="res://player/actions/free_sprinting.gd" id="19_art4l"]
+[ext_resource type="Script" uid="uid://cestmxdejpjfr" path="res://player/actions/sprinting.gd" id="19_art4l"]
 [ext_resource type="Script" uid="uid://dithgarxkwcq6" path="res://addons/godot_state_charts/state_chart.gd" id="20_bjvpn"]
 [ext_resource type="AnimationLibrary" uid="uid://384pdepbu27o" path="res://assets/humanoid/jog/Jog_Root.glb" id="21_55jnj"]
-[ext_resource type="Script" uid="uid://20onkjux1epp" path="res://player/actions/fixed_movement.gd" id="21_art4l"]
 [ext_resource type="AnimationLibrary" uid="uid://bs8itbp4lhy62" path="res://assets/humanoid/dash/Dash_Root.glb" id="21_dx5ib"]
 [ext_resource type="Script" uid="uid://bblen3l6716b7" path="res://addons/godot_state_charts/compound_state.gd" id="21_s7qer"]
 [ext_resource type="Script" uid="uid://cy56jyf5shri6" path="res://addons/godot_state_charts/atomic_state.gd" id="22_g4c7l"]
-[ext_resource type="Script" uid="uid://dmhvwacn1sfip" path="res://player/actions/fixed_falling.gd" id="22_mmwog"]
-[ext_resource type="Script" uid="uid://bwgvtyluwr3vv" path="res://player/actions/fixed_landing.gd" id="23_8pxes"]
-[ext_resource type="Script" uid="uid://bnrsbff82kaye" path="res://player/actions/fixed_walking.gd" id="24_fmu53"]
-[ext_resource type="Script" uid="uid://ci3qemc0khv3" path="res://player/actions/fixed_jogging.gd" id="25_w7j2h"]
-[ext_resource type="Script" uid="uid://c2dntuijffqa6" path="res://player/actions/fixed_sprinting.gd" id="26_n0b8q"]
-[ext_resource type="Script" uid="uid://b45ghqy3n6ieh" path="res://player/actions/fixed_idling.gd" id="27_jfgyi"]
 [ext_resource type="AnimationLibrary" uid="uid://b3ronohcurjtu" path="res://assets/humanoid/AnimationLibrary_Godot_Standard.glb" id="28_1so5t"]
 [ext_resource type="AnimationLibrary" uid="uid://cmavs5dl5dx87" path="res://assets/humanoid/jmp/Jump_B.glb" id="30_mmwog"]
 [ext_resource type="Script" uid="uid://cbbthcclsuv02" path="res://player/animation_player.gd" id="33_55jnj"]
@@ -325,64 +315,9 @@ script = ExtResource("39_dx5ib")
 expression = "grounded"
 metadata/_custom_type_script = "uid://dggl21qdyaciq"
 
-[sub_resource type="Resource" id="Resource_a2xo5"]
-script = ExtResource("39_dx5ib")
-expression = "!sprinting && moving"
-metadata/_custom_type_script = "uid://dggl21qdyaciq"
-
-[sub_resource type="Resource" id="Resource_fmu53"]
-script = ExtResource("39_dx5ib")
-expression = "!moving"
-metadata/_custom_type_script = "uid://dggl21qdyaciq"
-
-[sub_resource type="Resource" id="Resource_dx5ib"]
-script = ExtResource("39_dx5ib")
-expression = "sprinting && moving"
-metadata/_custom_type_script = "uid://dggl21qdyaciq"
-
-[sub_resource type="Resource" id="Resource_j55il"]
-script = ExtResource("39_dx5ib")
-expression = "walking && moving"
-metadata/_custom_type_script = "uid://dggl21qdyaciq"
-
-[sub_resource type="Resource" id="Resource_fjxoa"]
-script = ExtResource("39_dx5ib")
-expression = "!moving"
-metadata/_custom_type_script = "uid://dggl21qdyaciq"
-
-[sub_resource type="Resource" id="Resource_hjies"]
-script = ExtResource("39_dx5ib")
-expression = "sprinting && moving"
-metadata/_custom_type_script = "uid://dggl21qdyaciq"
-
-[sub_resource type="Resource" id="Resource_gswnw"]
-script = ExtResource("39_dx5ib")
-expression = "moving"
-metadata/_custom_type_script = "uid://dggl21qdyaciq"
-
-[sub_resource type="Resource" id="Resource_xcnuv"]
-script = ExtResource("39_dx5ib")
-expression = "moving && !walking"
-metadata/_custom_type_script = "uid://dggl21qdyaciq"
-
-[sub_resource type="Resource" id="Resource_mmwog"]
-script = ExtResource("39_dx5ib")
-expression = "!moving"
-metadata/_custom_type_script = "uid://dggl21qdyaciq"
-
-[sub_resource type="Resource" id="Resource_w7j2h"]
+[sub_resource type="Resource" id="Resource_1so5t"]
 script = ExtResource("39_dx5ib")
 expression = "airborne"
-metadata/_custom_type_script = "uid://dggl21qdyaciq"
-
-[sub_resource type="Resource" id="Resource_art4l"]
-script = ExtResource("39_dx5ib")
-expression = "grounded"
-metadata/_custom_type_script = "uid://dggl21qdyaciq"
-
-[sub_resource type="Resource" id="Resource_8pxes"]
-script = ExtResource("39_dx5ib")
-expression = "grounded"
 metadata/_custom_type_script = "uid://dggl21qdyaciq"
 
 [node name="Player" type="Node3D"]
@@ -390,13 +325,6 @@ metadata/_custom_type_script = "uid://dggl21qdyaciq"
 [node name="PlayerBody" type="CharacterBody3D" parent="."]
 script = ExtResource("1_yw30f")
 walking_speed = 2.0
-regular_3rd_person = ExtResource("2_rgyib")
-jump_input = ExtResource("16_g4c7l")
-move_input = ExtResource("17_knn7v")
-look_input = ExtResource("18_7pqkx")
-run_input = ExtResource("7_e7oew")
-walk_input = ExtResource("7_1so5t")
-camera_toggle_input = ExtResource("7_yllr7")
 
 [node name="View" type="Node3D" parent="PlayerBody"]
 
@@ -406,12 +334,7 @@ mesh = SubResource("ArrayMesh_7vg33")
 skin = SubResource("Skin_n6hgy")
 skeleton = NodePath("../../Model/Visuals/Rig/Skeleton")
 
-[node name="Camera" type="Node3D" parent="PlayerBody"]
-
-[node name="Fixed3rdPerson" parent="PlayerBody/Camera" instance=ExtResource("1_oul6g")]
-pitch_input = ExtResource("11_art4l")
-
-[node name="Free3rdPerson" parent="PlayerBody/Camera" instance=ExtResource("12_ebec5")]
+[node name="Camera" parent="PlayerBody" instance=ExtResource("12_ebec5")]
 
 [node name="Hitbox" type="CollisionShape3D" parent="PlayerBody"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95374, 0)
@@ -433,89 +356,41 @@ player = NodePath("../../..")
 controller = NodePath("../../../Controller")
 animator = NodePath("../../Visuals/AnimationPlayer")
 
-[node name="FreeMovement" type="Node" parent="PlayerBody/Model/Actions" node_paths=PackedStringArray("player", "controller", "animator")]
-script = ExtResource("14_a2xo5")
-player = NodePath("../../..")
-controller = NodePath("../../../Controller")
-animator = NodePath("../../Visuals/AnimationPlayer")
-
-[node name="FreeFalling" type="Node" parent="PlayerBody/Model/Actions/FreeMovement" node_paths=PackedStringArray("player", "controller", "animator")]
+[node name="Falling" type="Node" parent="PlayerBody/Model/Actions" node_paths=PackedStringArray("player", "controller", "animator")]
 script = ExtResource("14_pnw6m")
-player = NodePath("../../../..")
-controller = NodePath("../../../../Controller")
-animator = NodePath("../../../Visuals/AnimationPlayer")
-
-[node name="FreeLanding" type="Node" parent="PlayerBody/Model/Actions/FreeMovement" node_paths=PackedStringArray("player", "controller", "animator")]
-script = ExtResource("15_1so5t")
-player = NodePath("../../../..")
-controller = NodePath("../../../../Controller")
-animator = NodePath("../../../Visuals/AnimationPlayer")
-
-[node name="FreeWalking" type="Node" parent="PlayerBody/Model/Actions/FreeMovement" node_paths=PackedStringArray("player", "controller", "animator")]
-script = ExtResource("16_55jnj")
-player = NodePath("../../../..")
-controller = NodePath("../../../../Controller")
-animator = NodePath("../../../Visuals/AnimationPlayer")
-
-[node name="FreeJogging" type="Node" parent="PlayerBody/Model/Actions/FreeMovement" node_paths=PackedStringArray("player", "controller", "animator")]
-script = ExtResource("18_a2xo5")
-player = NodePath("../../../..")
-controller = NodePath("../../../../Controller")
-animator = NodePath("../../../Visuals/AnimationPlayer")
-
-[node name="FreeSprinting" type="Node" parent="PlayerBody/Model/Actions/FreeMovement" node_paths=PackedStringArray("player", "controller", "animator")]
-script = ExtResource("19_art4l")
-player = NodePath("../../../..")
-controller = NodePath("../../../../Controller")
-animator = NodePath("../../../Visuals/AnimationPlayer")
-
-[node name="FreeIdling" type="Node" parent="PlayerBody/Model/Actions/FreeMovement" node_paths=PackedStringArray("player", "controller", "animator")]
-script = ExtResource("17_dx5ib")
-player = NodePath("../../../..")
-controller = NodePath("../../../../Controller")
-animator = NodePath("../../../Visuals/AnimationPlayer")
-
-[node name="FixedMovement" type="Node" parent="PlayerBody/Model/Actions" node_paths=PackedStringArray("player", "controller", "animator")]
-script = ExtResource("21_art4l")
 player = NodePath("../../..")
 controller = NodePath("../../../Controller")
 animator = NodePath("../../Visuals/AnimationPlayer")
 
-[node name="FixedFalling" type="Node" parent="PlayerBody/Model/Actions/FixedMovement" node_paths=PackedStringArray("player", "controller", "animator")]
-script = ExtResource("22_mmwog")
-player = NodePath("../../../..")
-controller = NodePath("../../../../Controller")
-animator = NodePath("../../../Visuals/AnimationPlayer")
+[node name="Landing" type="Node" parent="PlayerBody/Model/Actions" node_paths=PackedStringArray("player", "controller", "animator")]
+script = ExtResource("15_1so5t")
+player = NodePath("../../..")
+controller = NodePath("../../../Controller")
+animator = NodePath("../../Visuals/AnimationPlayer")
 
-[node name="FixedLanding" type="Node" parent="PlayerBody/Model/Actions/FixedMovement" node_paths=PackedStringArray("player", "controller", "animator")]
-script = ExtResource("23_8pxes")
-player = NodePath("../../../..")
-controller = NodePath("../../../../Controller")
-animator = NodePath("../../../Visuals/AnimationPlayer")
+[node name="Walking" type="Node" parent="PlayerBody/Model/Actions" node_paths=PackedStringArray("player", "controller", "animator")]
+script = ExtResource("16_55jnj")
+player = NodePath("../../..")
+controller = NodePath("../../../Controller")
+animator = NodePath("../../Visuals/AnimationPlayer")
 
-[node name="FixedWalking" type="Node" parent="PlayerBody/Model/Actions/FixedMovement" node_paths=PackedStringArray("player", "controller", "animator")]
-script = ExtResource("24_fmu53")
-player = NodePath("../../../..")
-controller = NodePath("../../../../Controller")
-animator = NodePath("../../../Visuals/AnimationPlayer")
+[node name="Jogging" type="Node" parent="PlayerBody/Model/Actions" node_paths=PackedStringArray("player", "controller", "animator")]
+script = ExtResource("18_a2xo5")
+player = NodePath("../../..")
+controller = NodePath("../../../Controller")
+animator = NodePath("../../Visuals/AnimationPlayer")
 
-[node name="FixedJogging" type="Node" parent="PlayerBody/Model/Actions/FixedMovement" node_paths=PackedStringArray("player", "controller", "animator")]
-script = ExtResource("25_w7j2h")
-player = NodePath("../../../..")
-controller = NodePath("../../../../Controller")
-animator = NodePath("../../../Visuals/AnimationPlayer")
+[node name="Sprinting" type="Node" parent="PlayerBody/Model/Actions" node_paths=PackedStringArray("player", "controller", "animator")]
+script = ExtResource("19_art4l")
+player = NodePath("../../..")
+controller = NodePath("../../../Controller")
+animator = NodePath("../../Visuals/AnimationPlayer")
 
-[node name="FixedSprinting" type="Node" parent="PlayerBody/Model/Actions/FixedMovement" node_paths=PackedStringArray("player", "controller", "animator")]
-script = ExtResource("26_n0b8q")
-player = NodePath("../../../..")
-controller = NodePath("../../../../Controller")
-animator = NodePath("../../../Visuals/AnimationPlayer")
-
-[node name="FixedIdling" type="Node" parent="PlayerBody/Model/Actions/FixedMovement" node_paths=PackedStringArray("player", "controller", "animator")]
-script = ExtResource("27_jfgyi")
-player = NodePath("../../../..")
-controller = NodePath("../../../../Controller")
-animator = NodePath("../../../Visuals/AnimationPlayer")
+[node name="Idling" type="Node" parent="PlayerBody/Model/Actions" node_paths=PackedStringArray("player", "controller", "animator")]
+script = ExtResource("17_dx5ib")
+player = NodePath("../../..")
+controller = NodePath("../../../Controller")
+animator = NodePath("../../Visuals/AnimationPlayer")
 
 [node name="Visuals" type="Node3D" parent="PlayerBody/Model"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
@@ -908,8 +783,16 @@ libraries = {
 }
 script = ExtResource("33_55jnj")
 
-[node name="Controller" type="Node" parent="PlayerBody"]
+[node name="Controller" type="Node" parent="PlayerBody" node_paths=PackedStringArray("state_chart")]
 script = ExtResource("11_32hag")
+regular_3rd_person = ExtResource("2_rgyib")
+jump_input = ExtResource("16_g4c7l")
+move_input = ExtResource("17_knn7v")
+yaw_input = ExtResource("18_7pqkx")
+sprint_input = ExtResource("7_e7oew")
+walk_input = ExtResource("7_1so5t")
+camera_toggle_input = ExtResource("7_yllr7")
+state_chart = NodePath("../StateChart")
 
 [node name="StateChart" type="Node" parent="PlayerBody"]
 script = ExtResource("20_bjvpn")
@@ -917,284 +800,139 @@ metadata/_custom_type_script = "uid://dithgarxkwcq6"
 
 [node name="Root" type="Node" parent="PlayerBody/StateChart"]
 script = ExtResource("21_s7qer")
-initial_state = NodePath("FreeMovement")
+initial_state = NodePath("Grounded")
 metadata/_custom_type_script = "uid://bblen3l6716b7"
 
-[node name="FixedMovement" type="Node" parent="PlayerBody/StateChart/Root"]
-script = ExtResource("21_s7qer")
-initial_state = NodePath("Grounded")
-
-[node name="Grounded" type="Node" parent="PlayerBody/StateChart/Root/FixedMovement"]
+[node name="Grounded" type="Node" parent="PlayerBody/StateChart/Root"]
 script = ExtResource("21_s7qer")
 initial_state = NodePath("Idling")
 
-[node name="Sprinting" type="Node" parent="PlayerBody/StateChart/Root/FixedMovement/Grounded"]
+[node name="Sprinting" type="Node" parent="PlayerBody/StateChart/Root/Grounded"]
 script = ExtResource("22_g4c7l")
 
-[node name="ToJogging" type="Node" parent="PlayerBody/StateChart/Root/FixedMovement/Grounded/Sprinting"]
+[node name="ToJogging" type="Node" parent="PlayerBody/StateChart/Root/Grounded/Sprinting"]
 script = ExtResource("17_tqiix")
 to = NodePath("../../Jogging")
 guard = SubResource("Resource_n0b8q")
 delay_in_seconds = "0.0"
 
-[node name="ToIdling" type="Node" parent="PlayerBody/StateChart/Root/FixedMovement/Grounded/Sprinting"]
+[node name="ToIdling" type="Node" parent="PlayerBody/StateChart/Root/Grounded/Sprinting"]
 script = ExtResource("17_tqiix")
 to = NodePath("../../Idling")
 guard = SubResource("Resource_jfgyi")
 delay_in_seconds = "0.0"
 
-[node name="Jogging" type="Node" parent="PlayerBody/StateChart/Root/FixedMovement/Grounded"]
+[node name="Jogging" type="Node" parent="PlayerBody/StateChart/Root/Grounded"]
 script = ExtResource("22_g4c7l")
 
-[node name="ToSprinting" type="Node" parent="PlayerBody/StateChart/Root/FixedMovement/Grounded/Jogging"]
+[node name="ToSprinting" type="Node" parent="PlayerBody/StateChart/Root/Grounded/Jogging"]
 script = ExtResource("17_tqiix")
 to = NodePath("../../Sprinting")
 guard = SubResource("Resource_237xx")
 delay_in_seconds = "0.0"
 
-[node name="ToWalking" type="Node" parent="PlayerBody/StateChart/Root/FixedMovement/Grounded/Jogging"]
+[node name="ToWalking" type="Node" parent="PlayerBody/StateChart/Root/Grounded/Jogging"]
 script = ExtResource("17_tqiix")
 to = NodePath("../../Walking")
 guard = SubResource("Resource_wpyo2")
 delay_in_seconds = "0.0"
 
-[node name="ToIdling" type="Node" parent="PlayerBody/StateChart/Root/FixedMovement/Grounded/Jogging"]
+[node name="ToIdling" type="Node" parent="PlayerBody/StateChart/Root/Grounded/Jogging"]
 script = ExtResource("17_tqiix")
 to = NodePath("../../Idling")
 guard = SubResource("Resource_7crtr")
 delay_in_seconds = "0.0"
 
-[node name="Idling" type="Node" parent="PlayerBody/StateChart/Root/FixedMovement/Grounded"]
+[node name="Idling" type="Node" parent="PlayerBody/StateChart/Root/Grounded"]
 script = ExtResource("22_g4c7l")
 
-[node name="ToSprinting" type="Node" parent="PlayerBody/StateChart/Root/FixedMovement/Grounded/Idling"]
+[node name="ToSprinting" type="Node" parent="PlayerBody/StateChart/Root/Grounded/Idling"]
 script = ExtResource("17_tqiix")
 to = NodePath("../../Sprinting")
 guard = SubResource("Resource_vgvch")
 delay_in_seconds = "0.0"
 
-[node name="ToWalking" type="Node" parent="PlayerBody/StateChart/Root/FixedMovement/Grounded/Idling"]
+[node name="ToWalking" type="Node" parent="PlayerBody/StateChart/Root/Grounded/Idling"]
 script = ExtResource("17_tqiix")
 to = NodePath("../../Walking")
 guard = SubResource("Resource_a1u5o")
 delay_in_seconds = "0.0"
 
-[node name="ToJogging" type="Node" parent="PlayerBody/StateChart/Root/FixedMovement/Grounded/Idling"]
+[node name="ToJogging" type="Node" parent="PlayerBody/StateChart/Root/Grounded/Idling"]
 script = ExtResource("17_tqiix")
 to = NodePath("../../Jogging")
 guard = SubResource("Resource_3dxkp")
 delay_in_seconds = "0.0"
 
-[node name="Walking" type="Node" parent="PlayerBody/StateChart/Root/FixedMovement/Grounded"]
+[node name="Walking" type="Node" parent="PlayerBody/StateChart/Root/Grounded"]
 script = ExtResource("22_g4c7l")
 
-[node name="ToJogging" type="Node" parent="PlayerBody/StateChart/Root/FixedMovement/Grounded/Walking"]
+[node name="ToJogging" type="Node" parent="PlayerBody/StateChart/Root/Grounded/Walking"]
 script = ExtResource("17_tqiix")
 to = NodePath("../../Jogging")
 guard = SubResource("Resource_6wior")
 delay_in_seconds = "0.0"
 
-[node name="ToIdling" type="Node" parent="PlayerBody/StateChart/Root/FixedMovement/Grounded/Walking"]
+[node name="ToIdling" type="Node" parent="PlayerBody/StateChart/Root/Grounded/Walking"]
 script = ExtResource("17_tqiix")
 to = NodePath("../../Idling")
 guard = SubResource("Resource_p5tca")
 delay_in_seconds = "0.0"
 
-[node name="ToJumping" type="Node" parent="PlayerBody/StateChart/Root/FixedMovement/Grounded"]
+[node name="ToJumping" type="Node" parent="PlayerBody/StateChart/Root/Grounded"]
 script = ExtResource("17_tqiix")
-to = NodePath("../../../Jumping")
+to = NodePath("../../Jumping")
 event = &"jump_input"
 guard = SubResource("Resource_pjwc4")
 delay_in_seconds = "0.0"
 
-[node name="ToFalling" type="Node" parent="PlayerBody/StateChart/Root/FixedMovement/Grounded"]
+[node name="ToFalling" type="Node" parent="PlayerBody/StateChart/Root/Grounded"]
 script = ExtResource("17_tqiix")
 to = NodePath("../../Falling")
 guard = SubResource("Resource_35wys")
 delay_in_seconds = "0.0"
 
-[node name="Falling" type="Node" parent="PlayerBody/StateChart/Root/FixedMovement"]
+[node name="Falling" type="Node" parent="PlayerBody/StateChart/Root"]
 script = ExtResource("22_g4c7l")
 
-[node name="ToLanding" type="Node" parent="PlayerBody/StateChart/Root/FixedMovement/Falling"]
+[node name="ToLanding" type="Node" parent="PlayerBody/StateChart/Root/Falling"]
 script = ExtResource("17_tqiix")
 to = NodePath("../../Landing")
 guard = SubResource("Resource_jbx34")
 delay_in_seconds = "0.0"
 
-[node name="Landing" type="Node" parent="PlayerBody/StateChart/Root/FixedMovement"]
+[node name="Landing" type="Node" parent="PlayerBody/StateChart/Root"]
 script = ExtResource("22_g4c7l")
 
-[node name="ToGrounded" type="Node" parent="PlayerBody/StateChart/Root/FixedMovement/Landing"]
+[node name="ToGrounded" type="Node" parent="PlayerBody/StateChart/Root/Landing"]
 script = ExtResource("17_tqiix")
 to = NodePath("../../Grounded")
 guard = SubResource("Resource_s3g0c")
 delay_in_seconds = "0.01"
 
-[node name="ToFreeMovement" type="Node" parent="PlayerBody/StateChart/Root/FixedMovement"]
-script = ExtResource("17_tqiix")
-to = NodePath("../../FreeMovement")
-event = &"free_movement"
-delay_in_seconds = "0.0"
-
-[node name="FreeMovement" type="Node" parent="PlayerBody/StateChart/Root"]
-script = ExtResource("21_s7qer")
-initial_state = NodePath("Grounded")
-
-[node name="Grounded" type="Node" parent="PlayerBody/StateChart/Root/FreeMovement"]
-script = ExtResource("21_s7qer")
-initial_state = NodePath("Idling")
-
-[node name="Sprinting" type="Node" parent="PlayerBody/StateChart/Root/FreeMovement/Grounded"]
-script = ExtResource("22_g4c7l")
-
-[node name="ToJogging" type="Node" parent="PlayerBody/StateChart/Root/FreeMovement/Grounded/Sprinting"]
-script = ExtResource("17_tqiix")
-to = NodePath("../../Jogging")
-guard = SubResource("Resource_a2xo5")
-delay_in_seconds = "0.0"
-
-[node name="ToIdling" type="Node" parent="PlayerBody/StateChart/Root/FreeMovement/Grounded/Sprinting"]
-script = ExtResource("17_tqiix")
-to = NodePath("../../Idling")
-guard = SubResource("Resource_fmu53")
-delay_in_seconds = "0.0"
-
-[node name="Jogging" type="Node" parent="PlayerBody/StateChart/Root/FreeMovement/Grounded"]
-script = ExtResource("22_g4c7l")
-
-[node name="ToSprinting" type="Node" parent="PlayerBody/StateChart/Root/FreeMovement/Grounded/Jogging"]
-script = ExtResource("17_tqiix")
-to = NodePath("../../Sprinting")
-guard = SubResource("Resource_dx5ib")
-delay_in_seconds = "0.0"
-
-[node name="ToWalking" type="Node" parent="PlayerBody/StateChart/Root/FreeMovement/Grounded/Jogging"]
-script = ExtResource("17_tqiix")
-to = NodePath("../../Walking")
-guard = SubResource("Resource_j55il")
-delay_in_seconds = "0.0"
-
-[node name="ToIdling" type="Node" parent="PlayerBody/StateChart/Root/FreeMovement/Grounded/Jogging"]
-script = ExtResource("17_tqiix")
-to = NodePath("../../Idling")
-guard = SubResource("Resource_fjxoa")
-delay_in_seconds = "0.0"
-
-[node name="Idling" type="Node" parent="PlayerBody/StateChart/Root/FreeMovement/Grounded"]
-script = ExtResource("22_g4c7l")
-
-[node name="ToSprinting" type="Node" parent="PlayerBody/StateChart/Root/FreeMovement/Grounded/Idling"]
-script = ExtResource("17_tqiix")
-to = NodePath("../../Sprinting")
-guard = SubResource("Resource_hjies")
-delay_in_seconds = "0.0"
-
-[node name="ToWalking" type="Node" parent="PlayerBody/StateChart/Root/FreeMovement/Grounded/Idling"]
-script = ExtResource("17_tqiix")
-to = NodePath("../../Walking")
-guard = SubResource("Resource_j55il")
-delay_in_seconds = "0.0"
-
-[node name="ToJogging" type="Node" parent="PlayerBody/StateChart/Root/FreeMovement/Grounded/Idling"]
-script = ExtResource("17_tqiix")
-to = NodePath("../../Jogging")
-guard = SubResource("Resource_gswnw")
-delay_in_seconds = "0.0"
-
-[node name="Walking" type="Node" parent="PlayerBody/StateChart/Root/FreeMovement/Grounded"]
-script = ExtResource("22_g4c7l")
-
-[node name="ToJogging" type="Node" parent="PlayerBody/StateChart/Root/FreeMovement/Grounded/Walking"]
-script = ExtResource("17_tqiix")
-to = NodePath("../../Jogging")
-guard = SubResource("Resource_xcnuv")
-delay_in_seconds = "0.0"
-
-[node name="ToIdling" type="Node" parent="PlayerBody/StateChart/Root/FreeMovement/Grounded/Walking"]
-script = ExtResource("17_tqiix")
-to = NodePath("../../Idling")
-guard = SubResource("Resource_mmwog")
-delay_in_seconds = "0.0"
-
-[node name="ToJumping" type="Node" parent="PlayerBody/StateChart/Root/FreeMovement/Grounded"]
-script = ExtResource("17_tqiix")
-to = NodePath("../../../Jumping")
-event = &"jump_input"
-delay_in_seconds = "0.0"
-
-[node name="ToFalling" type="Node" parent="PlayerBody/StateChart/Root/FreeMovement/Grounded"]
-script = ExtResource("17_tqiix")
-to = NodePath("../../Falling")
-guard = SubResource("Resource_w7j2h")
-delay_in_seconds = "0.0"
-
-[node name="Falling" type="Node" parent="PlayerBody/StateChart/Root/FreeMovement"]
-script = ExtResource("22_g4c7l")
-
-[node name="ToLanding" type="Node" parent="PlayerBody/StateChart/Root/FreeMovement/Falling"]
-script = ExtResource("17_tqiix")
-to = NodePath("../../Landing")
-guard = SubResource("Resource_art4l")
-delay_in_seconds = "0.0"
-
-[node name="Landing" type="Node" parent="PlayerBody/StateChart/Root/FreeMovement"]
-script = ExtResource("22_g4c7l")
-
-[node name="ToGrounded" type="Node" parent="PlayerBody/StateChart/Root/FreeMovement/Landing"]
-script = ExtResource("17_tqiix")
-to = NodePath("../../Grounded")
-guard = SubResource("Resource_8pxes")
-delay_in_seconds = "0.05"
-
-[node name="ToFixedMovement" type="Node" parent="PlayerBody/StateChart/Root/FreeMovement"]
-script = ExtResource("17_tqiix")
-to = NodePath("../../FixedMovement")
-event = &"fixed_movement"
-delay_in_seconds = "0.0"
-
 [node name="Jumping" type="Node" parent="PlayerBody/StateChart/Root"]
 script = ExtResource("22_g4c7l")
 
-[node name="ToFreeFalling" type="Node" parent="PlayerBody/StateChart/Root/Jumping"]
+[node name="ToFalling" type="Node" parent="PlayerBody/StateChart/Root/Jumping"]
 script = ExtResource("17_tqiix")
-to = NodePath("../../FreeMovement/Falling")
-event = &"free_fall"
-delay_in_seconds = "0"
-
-[node name="ToFixedFalling" type="Node" parent="PlayerBody/StateChart/Root/Jumping"]
-script = ExtResource("17_tqiix")
-to = NodePath("../../FixedMovement/Falling")
-event = &"fixed_fall"
+to = NodePath("../../Falling")
+guard = SubResource("Resource_1so5t")
 delay_in_seconds = "0.0"
 
 [node name="StateChartDebugger" parent="PlayerBody" instance=ExtResource("18_e7oew")]
 offset_left = 770.0
 initial_node_to_watch = NodePath("..")
 
-[connection signal="state_entered" from="PlayerBody/StateChart/Root/FixedMovement" to="PlayerBody/Model/Actions/FixedMovement" method="_on_fixed_movement_state_entered"]
-[connection signal="state_entered" from="PlayerBody/StateChart/Root/FixedMovement/Grounded/Sprinting" to="PlayerBody/Model/Actions/FixedMovement/FixedSprinting" method="_on_sprinting_state_entered"]
-[connection signal="state_physics_processing" from="PlayerBody/StateChart/Root/FixedMovement/Grounded/Sprinting" to="PlayerBody/Model/Actions/FixedMovement/FixedSprinting" method="_on_sprinting_state_physics_processing"]
-[connection signal="state_entered" from="PlayerBody/StateChart/Root/FixedMovement/Grounded/Jogging" to="PlayerBody/Model/Actions/FixedMovement/FixedJogging" method="_on_jogging_state_entered"]
-[connection signal="state_physics_processing" from="PlayerBody/StateChart/Root/FixedMovement/Grounded/Jogging" to="PlayerBody/Model/Actions/FixedMovement/FixedJogging" method="_on_jogging_state_physics_processing"]
-[connection signal="state_entered" from="PlayerBody/StateChart/Root/FixedMovement/Grounded/Idling" to="PlayerBody/Model/Actions/FixedMovement/FixedIdling" method="_on_idling_state_entered"]
-[connection signal="state_physics_processing" from="PlayerBody/StateChart/Root/FixedMovement/Grounded/Idling" to="PlayerBody/Model/Actions/FixedMovement/FixedIdling" method="_on_idling_state_physics_processing"]
-[connection signal="state_entered" from="PlayerBody/StateChart/Root/FixedMovement/Grounded/Walking" to="PlayerBody/Model/Actions/FixedMovement/FixedWalking" method="_on_walking_state_entered"]
-[connection signal="state_physics_processing" from="PlayerBody/StateChart/Root/FixedMovement/Grounded/Walking" to="PlayerBody/Model/Actions/FixedMovement/FixedWalking" method="_on_walking_state_physics_processing"]
-[connection signal="state_entered" from="PlayerBody/StateChart/Root/FixedMovement/Falling" to="PlayerBody/Model/Actions/FixedMovement/FixedFalling" method="_on_falling_state_entered"]
-[connection signal="state_physics_processing" from="PlayerBody/StateChart/Root/FixedMovement/Falling" to="PlayerBody/Model/Actions/FixedMovement/FixedFalling" method="_on_falling_state_physics_processing"]
-[connection signal="state_entered" from="PlayerBody/StateChart/Root/FixedMovement/Landing" to="PlayerBody/Model/Actions/FixedMovement/FixedLanding" method="_on_landing_state_entered"]
-[connection signal="state_physics_processing" from="PlayerBody/StateChart/Root/FixedMovement/Landing" to="PlayerBody/Model/Actions/FixedMovement/FixedLanding" method="_on_landing_state_physics_processing"]
-[connection signal="state_entered" from="PlayerBody/StateChart/Root/FreeMovement/Grounded/Sprinting" to="PlayerBody/Model/Actions/FreeMovement/FreeSprinting" method="_on_sprinting_state_entered"]
-[connection signal="state_physics_processing" from="PlayerBody/StateChart/Root/FreeMovement/Grounded/Sprinting" to="PlayerBody/Model/Actions/FreeMovement/FreeSprinting" method="_on_sprinting_state_physics_processing"]
-[connection signal="state_entered" from="PlayerBody/StateChart/Root/FreeMovement/Grounded/Jogging" to="PlayerBody/Model/Actions/FreeMovement/FreeJogging" method="_on_jogging_state_entered"]
-[connection signal="state_physics_processing" from="PlayerBody/StateChart/Root/FreeMovement/Grounded/Jogging" to="PlayerBody/Model/Actions/FreeMovement/FreeJogging" method="_on_jogging_state_physics_processing"]
-[connection signal="state_entered" from="PlayerBody/StateChart/Root/FreeMovement/Grounded/Idling" to="PlayerBody/Model/Actions/FreeMovement/FreeIdling" method="_on_idling_state_entered"]
-[connection signal="state_physics_processing" from="PlayerBody/StateChart/Root/FreeMovement/Grounded/Idling" to="PlayerBody/Model/Actions/FreeMovement/FreeIdling" method="_on_idling_state_physics_processing"]
-[connection signal="state_entered" from="PlayerBody/StateChart/Root/FreeMovement/Grounded/Walking" to="PlayerBody/Model/Actions/FreeMovement/FreeWalking" method="_on_walking_state_entered"]
-[connection signal="state_physics_processing" from="PlayerBody/StateChart/Root/FreeMovement/Grounded/Walking" to="PlayerBody/Model/Actions/FreeMovement/FreeWalking" method="_on_walking_state_physics_processing"]
-[connection signal="state_entered" from="PlayerBody/StateChart/Root/FreeMovement/Falling" to="PlayerBody/Model/Actions/FreeMovement/FreeFalling" method="_on_falling_state_entered"]
-[connection signal="state_physics_processing" from="PlayerBody/StateChart/Root/FreeMovement/Falling" to="PlayerBody/Model/Actions/FreeMovement/FreeFalling" method="_on_falling_state_physics_processing"]
-[connection signal="state_entered" from="PlayerBody/StateChart/Root/FreeMovement/Landing" to="PlayerBody/Model/Actions/FreeMovement/FreeLanding" method="_on_landing_state_entered"]
-[connection signal="state_physics_processing" from="PlayerBody/StateChart/Root/FreeMovement/Landing" to="PlayerBody/Model/Actions/FreeMovement/FreeLanding" method="_on_landing_state_physics_processing"]
+[connection signal="state_entered" from="PlayerBody/StateChart/Root/Grounded/Sprinting" to="PlayerBody/Model/Actions/Sprinting" method="_on_sprinting_state_entered"]
+[connection signal="state_physics_processing" from="PlayerBody/StateChart/Root/Grounded/Sprinting" to="PlayerBody/Model/Actions/Sprinting" method="_on_sprinting_state_physics_processing"]
+[connection signal="state_entered" from="PlayerBody/StateChart/Root/Grounded/Jogging" to="PlayerBody/Model/Actions/Jogging" method="_on_jogging_state_entered"]
+[connection signal="state_physics_processing" from="PlayerBody/StateChart/Root/Grounded/Jogging" to="PlayerBody/Model/Actions/Jogging" method="_on_jogging_state_physics_processing"]
+[connection signal="state_entered" from="PlayerBody/StateChart/Root/Grounded/Idling" to="PlayerBody/Model/Actions/Idling" method="_on_idling_state_entered"]
+[connection signal="state_physics_processing" from="PlayerBody/StateChart/Root/Grounded/Idling" to="PlayerBody/Model/Actions/Idling" method="_on_idling_state_physics_processing"]
+[connection signal="state_entered" from="PlayerBody/StateChart/Root/Grounded/Walking" to="PlayerBody/Model/Actions/Walking" method="_on_walking_state_entered"]
+[connection signal="state_physics_processing" from="PlayerBody/StateChart/Root/Grounded/Walking" to="PlayerBody/Model/Actions/Walking" method="_on_walking_state_physics_processing"]
+[connection signal="state_entered" from="PlayerBody/StateChart/Root/Falling" to="PlayerBody/Model/Actions/Falling" method="_on_falling_state_entered"]
+[connection signal="state_physics_processing" from="PlayerBody/StateChart/Root/Falling" to="PlayerBody/Model/Actions/Falling" method="_on_falling_state_physics_processing"]
+[connection signal="state_entered" from="PlayerBody/StateChart/Root/Landing" to="PlayerBody/Model/Actions/Landing" method="_on_landing_state_entered"]
+[connection signal="state_physics_processing" from="PlayerBody/StateChart/Root/Landing" to="PlayerBody/Model/Actions/Landing" method="_on_landing_state_physics_processing"]
 [connection signal="state_entered" from="PlayerBody/StateChart/Root/Jumping" to="PlayerBody/Model/Actions/Jumping" method="_on_jumping_state_entered"]

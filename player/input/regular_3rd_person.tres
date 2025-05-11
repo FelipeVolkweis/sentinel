@@ -17,7 +17,7 @@
 [ext_resource type="Resource" uid="uid://5h8t3ewrtxnk" path="res://player/input/pitch_input.tres" id="13_d0nim"]
 [ext_resource type="Script" uid="uid://b3y2djritdcbl" path="res://addons/guide/modifiers/guide_modifier_scale.gd" id="14_d0nim"]
 [ext_resource type="Resource" uid="uid://dbpebj8gfde3o" path="res://player/input/camera_toggle_input.tres" id="16_7xjfh"]
-[ext_resource type="Resource" uid="uid://bx0426rmljir" path="res://player/input/run_input.tres" id="17_cuyom"]
+[ext_resource type="Resource" uid="uid://bx0426rmljir" path="res://player/input/sprint_input.tres" id="17_cuyom"]
 [ext_resource type="Script" uid="uid://i5ro7locqctj" path="res://addons/guide/triggers/guide_trigger_hold.gd" id="18_04017"]
 [ext_resource type="Resource" uid="uid://bbdd6yyfhm0ql" path="res://player/input/walk_input.tres" id="19_04017"]
 

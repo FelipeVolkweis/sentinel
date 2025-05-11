@@ -105,7 +105,7 @@ func animate_8way(animation_name: String, input: Vector2) -> void:
 
 func animate(animation_name: String) -> void:
 	if animations.has(animation_name):
-		print("playing: ", animations[animation_name] )
+		#print("playing: ", animations[animation_name])
 		play(animations[animation_name])
 	else:
 		push_error("Animation not found: " + animation_name)

@@ -11,7 +11,6 @@ func _ready() -> void:
 
 
 func _on_jumping_state_entered() -> void:
-	#animation_fsm.travel("Jump_Start")
 	animator.animate("jump_start")
 	start_oneshot_timer(0.20)
 

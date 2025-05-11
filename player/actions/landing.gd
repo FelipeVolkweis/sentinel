@@ -1,8 +1,7 @@
-extends FreeMovement
+extends BaseAction
 
 
 func _on_landing_state_entered() -> void:
-	#animation_fsm.travel("Jump_Land")
 	animator.animate("jump_land")
 
 
