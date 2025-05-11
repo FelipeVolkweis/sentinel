@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3xrmu4sfxxc1"]
+
+[ext_resource type="Script" uid="uid://d2celtc2r84ek" path="res://camera/fixed_3rd_person/fixed_3rd_person.gd" id="1_xvnxv"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_m48x8"]
+radius = 0.2
+
+[node name="Fixed3rdPerson" type="Node3D"]
+script = ExtResource("1_xvnxv")
+
+[node name="Yaw" type="Node3D" parent="."]
+
+[node name="Pitch" type="Node3D" parent="Yaw"]
+
+[node name="SpringArm3D" type="SpringArm3D" parent="Yaw/Pitch"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 1.5, 0)
+shape = SubResource("CylinderShape3D_m48x8")
+spring_length = 2.0
+
+[node name="Camera3D" type="Camera3D" parent="Yaw/Pitch/SpringArm3D"]

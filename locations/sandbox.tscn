@@ -1,15 +1,43 @@
-[gd_scene load_steps=2 format=3 uid="uid://c76fadsjihon2"]
+[gd_scene load_steps=5 format=3 uid="uid://c76fadsjihon2"]
 
 [ext_resource type="PackedScene" uid="uid://yxpgihmcjafi" path="res://player/player.tscn" id="1_o03jh"]
+[ext_resource type="Texture2D" uid="uid://bu360dgpq7odw" path="res://addons/kenney_prototype_textures/dark/texture_07.png" id="1_osa5q"]
+[ext_resource type="Script" uid="uid://cmxm34y4emk1a" path="res://locations/label.gd" id="3_iq6px"]
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_osa5q"]
+albedo_texture = ExtResource("1_osa5q")
+uv1_triplanar = true
 
 [node name="Sandbox" type="Node3D"]
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
+[node name="Floor" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -8)
 use_collision = true
-size = Vector3(17, 0.5, 17)
+size = Vector3(50, 0.5, 33)
+material = SubResource("ORMMaterial3D_osa5q")
 
 [node name="Player" parent="." instance=ExtResource("1_o03jh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.48572, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.28418, -3.09101)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.662372, 0.749175, 0, -0.749175, -0.662372, 0, 7.38171, -16.3206)
+
+[node name="Wall" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.22879, 7.99849)
+use_collision = true
+size = Vector3(17, 4, 1)
+
+[node name="CenterBox" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.755238, -3.22728)
+use_collision = true
+size = Vector3(1, 1.02564, 1)
+
+[node name="Label" type="Label" parent="."]
+offset_right = 110.0
+offset_bottom = 58.0
+script = ExtResource("3_iq6px")
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 6, 0.208163, -10.0365)
+use_collision = true
+polygon = PackedVector2Array(-7.01123, -0.00303006, 12.477, -3.85703, 1, 2)
