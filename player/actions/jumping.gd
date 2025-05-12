@@ -12,7 +12,7 @@ func _ready() -> void:
 
 func _on_jumping_state_entered() -> void:
 	animator.animate("jump_start")
-	start_oneshot_timer(0.20)
+	start_oneshot_timer(0.1)
 
 
 func start_oneshot_timer(duration: float) -> void:
@@ -21,4 +21,5 @@ func start_oneshot_timer(duration: float) -> void:
 
 
 func _on_timer_timeout() -> void:
-	player.velocity.y = player.jump_speed
+	player.jump()
+	

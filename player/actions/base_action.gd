@@ -1,22 +1,21 @@
 class_name BaseAction
 extends Node
 
-@export var player: CharacterBody3D
+@export var player: PlayerBody
 @export var controller: Controller
 @export var animator: Animator
 
 func move_to(speed: float, delta: float):
 	var direction = controller.get_free_move_direction()
-	var target_rotation = atan2(direction.x, direction.z) - player.rotation.y + PI
-	player.velocity = player.velocity.move_toward(direction * speed, player.movement_acceleration * delta)
+	player.move_to(direction, speed, delta)
 	
 	if controller.is_free_movement_type():
-		player.visuals.rotation.y = lerp_angle(player.visuals.rotation.y, target_rotation, player.rotation_speed * delta)
+		player.rotate_to(direction, delta)
 
 
 func look_to():
 	var value = controller.yaw_input.value_axis_1d
-	player.rotation_degrees.y += value
+	player.rotate_by(value)
 
 
 func animate_8way(animation: String):

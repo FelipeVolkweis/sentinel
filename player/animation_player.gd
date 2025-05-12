@@ -114,8 +114,8 @@ func animate(animation_name: String) -> void:
 func configure_blending_transitions() -> void:
 	configure_many_to_many_blending_transitions(movement_animations, 0.25)
 	set_blend_time(jump_animations["jump_start"], jump_animations["jump_loop"], 0.1)
-	set_blend_time(jump_animations["jump_loop"], jump_animations["jump_land"], 0.33)
-	configure_one_to_many_blending_transitions(jump_animations["jump_land"], movement_animations, 0.2)
+	set_blend_time(jump_animations["jump_loop"], jump_animations["jump_land"], 0.2)
+	configure_one_to_many_blending_transitions(jump_animations["jump_land"], movement_animations, 0.1)
 	configure_many_to_one_blending_transitions(movement_animations, jump_animations["jump_start"], 0.1)
 	configure_many_to_one_blending_transitions(movement_animations, jump_animations["jump_loop"], 0.1)
 

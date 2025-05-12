@@ -36,12 +36,9 @@ func _ready() -> void:
 
 func _ready_state_chart() -> void:
 	state_chart.set_expression_property.call_deferred("moving", false)
-
-	state_chart.set_expression_property.call_deferred("airborne", false)
-	state_chart.set_expression_property.call_deferred("grounded", false)
-
 	state_chart.set_expression_property.call_deferred("sprinting", false)
 	state_chart.set_expression_property.call_deferred("walking", false)
+	state_chart.set_expression_property.call_deferred("player", player)
 
 
 func _process(delta: float) -> void:
@@ -50,17 +47,13 @@ func _process(delta: float) -> void:
 	
 	if jump_input.is_triggered():
 		state_chart.send_event("jump_input")
-	
-	airborne = !player.is_on_floor()
-	grounded = player.is_on_floor()
-	state_chart.set_expression_property("airborne", airborne)
-	state_chart.set_expression_property("grounded", grounded)
 
 	sprinting = sprint_input.is_triggered()
 	walking = walk_input.is_triggered()
 	state_chart.set_expression_property("sprinting", sprinting)
 	state_chart.set_expression_property("walking", walking)
-		
+	state_chart.set_expression_property("player", player)
+			
 	_camera_input_handler()
 
 
