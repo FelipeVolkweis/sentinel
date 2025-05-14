@@ -17,7 +17,7 @@ size = Vector3(50, 0.5, 33)
 material = SubResource("ORMMaterial3D_osa5q")
 
 [node name="Player" parent="." instance=ExtResource("1_o03jh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.28418, -3.09101)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.38853, 0.957285, -0.00729465)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.662372, 0.749175, 0, -0.749175, -0.662372, 0, 7.38171, -16.3206)
@@ -41,3 +41,8 @@ script = ExtResource("3_iq6px")
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 6, 0.208163, -10.0365)
 use_collision = true
 polygon = PackedVector2Array(-7.01123, -0.00303006, 12.477, -3.85703, 1, 2)
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.78687, -0.604436, 0)
+use_collision = true
+radius = 1.70389
