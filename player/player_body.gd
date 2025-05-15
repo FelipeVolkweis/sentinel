@@ -11,7 +11,7 @@ extends CharacterBody3D
 @export var deceleration: float = 15.0
 @export var air_control: float = 1.0
 
-@onready var visuals: Node3D = $View
+@onready var visuals: Node3D = $Model/Visuals/Rig
 
 @onready var camera = $Camera/Yaw/Pitch/SpringArm3D/Camera3D
 @onready var camera_config = $Camera

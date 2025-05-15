@@ -33,6 +33,10 @@
 [ext_resource type="Script" uid="uid://cbbthcclsuv02" path="res://player/animation_player.gd" id="33_55jnj"]
 [ext_resource type="Script" uid="uid://dggl21qdyaciq" path="res://addons/godot_state_charts/expression_guard.gd" id="39_dx5ib"]
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kqu6x"]
+radius = 0.251627
+height = 1.68585
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nwky8"]
 resource_name = "M_Main"
 cull_mode = 2
@@ -243,10 +247,6 @@ bind/52/name = &"RightToes"
 bind/52/bone = -1
 bind/52/pose = Transform3D(1, 1.7463e-10, 1.16415e-10, -1.74605e-10, -4.47035e-07, 1, 2.91028e-10, -1, -2.38419e-07, 0.089, -0.1132, 0.0152)
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kqu6x"]
-radius = 0.251627
-height = 1.78668
-
 [sub_resource type="Resource" id="Resource_n0b8q"]
 script = ExtResource("39_dx5ib")
 expression = "!sprinting && moving"
@@ -328,18 +328,10 @@ metadata/_custom_type_script = "uid://dggl21qdyaciq"
 script = ExtResource("1_yw30f")
 walking_speed = 2.0
 
-[node name="View" type="Node3D" parent="PlayerBody"]
-
-[node name="Mannequin" type="MeshInstance3D" parent="PlayerBody/View"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
-mesh = SubResource("ArrayMesh_7vg33")
-skin = SubResource("Skin_n6hgy")
-skeleton = NodePath("../../Model/Visuals/Rig/Skeleton")
-
 [node name="Camera" parent="PlayerBody" instance=ExtResource("12_ebec5")]
 
 [node name="Hitbox" type="CollisionShape3D" parent="PlayerBody"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.04796, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.07019, 0)
 shape = SubResource("CapsuleShape3D_kqu6x")
 
 [node name="Model" type="Node3D" parent="PlayerBody"]
@@ -779,28 +771,51 @@ script = ExtResource("11_2uvqg")
 [node name="RightFootEffector" type="GodotIKEffector" parent="PlayerBody/Model/Visuals/Rig/Skeleton/GodotIK"]
 bone_idx = 51
 chain_length = 3
+transform_mode = 1
 
-[node name="PoleBoneConstraint" type="GodotIKConstraint" parent="PlayerBody/Model/Visuals/Rig/Skeleton/GodotIK/RightFootEffector"]
-bone_idx = 51
+[node name="RightPoleBoneConstraint" type="GodotIKConstraint" parent="PlayerBody/Model/Visuals/Rig/Skeleton/GodotIK/RightFootEffector"]
 script = ExtResource("12_5ejfk")
-active = false
-pole_direction = Vector3(140, 0, 10)
+pole_direction = Vector3(0, 0, 1)
+backward = false
 metadata/_custom_type_script = "uid://df7j0ab7lmhoy"
 
 [node name="LeftFootEffector" type="GodotIKEffector" parent="PlayerBody/Model/Visuals/Rig/Skeleton/GodotIK"]
 bone_idx = 47
 chain_length = 3
+transform_mode = 1
+active = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.106207, 0, 9.28492e-09)
 
-[node name="RightDowncast" type="RayCast3D" parent="PlayerBody/Model/Visuals/Rig/Skeleton"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 0.5, 0)
+[node name="LeftPoleBoneConstraint" type="GodotIKConstraint" parent="PlayerBody/Model/Visuals/Rig/Skeleton/GodotIK/LeftFootEffector"]
+script = ExtResource("12_5ejfk")
+active = false
+pole_direction = Vector3(0, 0, 1)
+metadata/_custom_type_script = "uid://df7j0ab7lmhoy"
+
+[node name="RightFootAttachment" type="BoneAttachment3D" parent="PlayerBody/Model/Visuals/Rig/Skeleton"]
+transform = Transform3D(-0.996169, -0.00745723, -0.0871326, -0.0874509, 0.0828645, 0.992717, -0.000182706, 0.996533, -0.0831992, -0.0165725, 0.188781, -0.000589096)
+bone_name = "RightFoot"
+bone_idx = 51
+
+[node name="RightDowncast" type="RayCast3D" parent="PlayerBody/Model/Visuals/Rig/Skeleton/RightFootAttachment"]
+transform = Transform3D(1, 1.68002e-08, -1.60071e-10, 4.36557e-10, -5.96046e-08, -1, -5.49335e-09, 1, -4.47035e-08, -0.021328, 0.0202094, 0.242109)
 target_position = Vector3(0, -0.5, 0)
 debug_shape_custom_color = Color(0.875957, 0, 0.501818, 1)
 
-[node name="LeftDowncast" type="RayCast3D" parent="PlayerBody/Model/Visuals/Rig/Skeleton"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 0.5, 0)
+[node name="LeftFootAttachment" type="BoneAttachment3D" parent="PlayerBody/Model/Visuals/Rig/Skeleton"]
+transform = Transform3D(-1, 5.67701e-10, 8.28724e-10, 8.28725e-10, 4.46102e-07, 1, 5.677e-10, 1, -3.86497e-07, 0.089, 0.187, -0.0403526)
+bone_name = "LeftFoot"
+bone_idx = 47
+
+[node name="LeftDowncast" type="RayCast3D" parent="PlayerBody/Model/Visuals/Rig/Skeleton/LeftFootAttachment"]
+transform = Transform3D(1, 4.35036e-18, 0, 0, -4.37114e-08, -1, -6.32564e-18, 1, -4.37114e-08, 0, 8.56817e-08, 0.234191)
 target_position = Vector3(0, -0.5, 0)
 debug_shape_custom_color = Color(0.87451, 0, 0.501961, 1)
+
+[node name="Mannequin" type="MeshInstance3D" parent="PlayerBody/Model/Visuals/Rig"]
+mesh = SubResource("ArrayMesh_7vg33")
+skin = SubResource("Skin_n6hgy")
+skeleton = NodePath("../Skeleton")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerBody/Model/Visuals"]
 root_motion_track = NodePath("%Skeleton:Root")
