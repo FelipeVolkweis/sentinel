@@ -1,16 +1,17 @@
-[gd_scene load_steps=53 format=4 uid="uid://yxpgihmcjafi"]
+[gd_scene load_steps=54 format=4 uid="uid://yxpgihmcjafi"]
 
 [ext_resource type="Script" uid="uid://j8b0mb6i5g6l" path="res://player/player_body.gd" id="1_yw30f"]
 [ext_resource type="Resource" uid="uid://def3mva7m32tk" path="res://player/input/regular_3rd_person.tres" id="2_rgyib"]
 [ext_resource type="Resource" uid="uid://bbdd6yyfhm0ql" path="res://player/input/walk_input.tres" id="7_1so5t"]
 [ext_resource type="Resource" uid="uid://bx0426rmljir" path="res://player/input/sprint_input.tres" id="7_e7oew"]
 [ext_resource type="Resource" uid="uid://dbpebj8gfde3o" path="res://player/input/camera_toggle_input.tres" id="7_yllr7"]
-[ext_resource type="Script" uid="uid://bln8686q70b5e" path="res://player/skeleton.gd" id="11_2uvqg"]
+[ext_resource type="Script" uid="uid://bln8686q70b5e" path="res://player/ik/skeleton.gd" id="11_2uvqg"]
 [ext_resource type="Script" uid="uid://op1an1e6733f" path="res://player/controller.gd" id="11_32hag"]
 [ext_resource type="Script" uid="uid://ddk8isno1f6g7" path="res://player/actions/base_action.gd" id="12_1s1yo"]
 [ext_resource type="Script" uid="uid://dr3vnw6upjn7p" path="res://player/actions/jumping.gd" id="12_2uvqg"]
 [ext_resource type="Script" uid="uid://df7j0ab7lmhoy" path="res://addons/libik/script/pole_bone_constraint.gd" id="12_5ejfk"]
 [ext_resource type="PackedScene" uid="uid://gll8qeabbqk2" path="res://camera/free_3rd_person/free_3rd_person.tscn" id="12_ebec5"]
+[ext_resource type="Script" uid="uid://c7dh0ixo2ce5s" path="res://player/ik/perpendicular_downcast.gd" id="13_5ejfk"]
 [ext_resource type="Script" uid="uid://bsft6kuoyojb8" path="res://player/actions/falling.gd" id="14_pnw6m"]
 [ext_resource type="AnimationLibrary" uid="uid://c8j0dmhdav7qt" path="res://assets/humanoid/walk/Walk_Root.glb" id="14_x7c3f"]
 [ext_resource type="Script" uid="uid://w1uc8y35hjmc" path="res://player/actions/landing.gd" id="15_1so5t"]
@@ -35,7 +36,7 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kqu6x"]
 radius = 0.251627
-height = 1.68585
+height = 1.84462
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nwky8"]
 resource_name = "M_Main"
@@ -331,7 +332,7 @@ walking_speed = 2.0
 [node name="Camera" parent="PlayerBody" instance=ExtResource("12_ebec5")]
 
 [node name="Hitbox" type="CollisionShape3D" parent="PlayerBody"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.07019, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00982, 0)
 shape = SubResource("CapsuleShape3D_kqu6x")
 
 [node name="Model" type="Node3D" parent="PlayerBody"]
@@ -767,6 +768,8 @@ bones/52/scale = Vector3(1, 1, 1)
 script = ExtResource("11_2uvqg")
 
 [node name="GodotIK" type="GodotIK" parent="PlayerBody/Model/Visuals/Rig/Skeleton"]
+use_global_rotation_poles = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0468884, 0)
 
 [node name="RightFootEffector" type="GodotIKEffector" parent="PlayerBody/Model/Visuals/Rig/Skeleton/GodotIK"]
 bone_idx = 51
@@ -774,43 +777,35 @@ chain_length = 3
 transform_mode = 1
 
 [node name="RightPoleBoneConstraint" type="GodotIKConstraint" parent="PlayerBody/Model/Visuals/Rig/Skeleton/GodotIK/RightFootEffector"]
+bone_idx = 50
 script = ExtResource("12_5ejfk")
 pole_direction = Vector3(0, 0, 1)
-backward = false
 metadata/_custom_type_script = "uid://df7j0ab7lmhoy"
 
 [node name="LeftFootEffector" type="GodotIKEffector" parent="PlayerBody/Model/Visuals/Rig/Skeleton/GodotIK"]
 bone_idx = 47
 chain_length = 3
 transform_mode = 1
-active = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.106207, 0, 9.28492e-09)
 
 [node name="LeftPoleBoneConstraint" type="GodotIKConstraint" parent="PlayerBody/Model/Visuals/Rig/Skeleton/GodotIK/LeftFootEffector"]
+bone_idx = 46
 script = ExtResource("12_5ejfk")
-active = false
 pole_direction = Vector3(0, 0, 1)
 metadata/_custom_type_script = "uid://df7j0ab7lmhoy"
 
-[node name="RightFootAttachment" type="BoneAttachment3D" parent="PlayerBody/Model/Visuals/Rig/Skeleton"]
-transform = Transform3D(-0.996169, -0.00745723, -0.0871326, -0.0874509, 0.0828645, 0.992717, -0.000182706, 0.996533, -0.0831992, -0.0165725, 0.188781, -0.000589096)
-bone_name = "RightFoot"
-bone_idx = 51
-
-[node name="RightDowncast" type="RayCast3D" parent="PlayerBody/Model/Visuals/Rig/Skeleton/RightFootAttachment"]
-transform = Transform3D(1, 1.68002e-08, -1.60071e-10, 4.36557e-10, -5.96046e-08, -1, -5.49335e-09, 1, -4.47035e-08, -0.021328, 0.0202094, 0.242109)
+[node name="RightDowncast" type="RayCast3D" parent="PlayerBody/Model/Visuals/Rig/Skeleton"]
+transform = Transform3D(-0.995746, -0.0914565, 0.0111995, -0.0920713, 0.992311, -0.0827136, -0.00354866, -0.0833928, -0.99651, -0.0142784, 0.432972, -0.000447323)
 target_position = Vector3(0, -0.5, 0)
-debug_shape_custom_color = Color(0.875957, 0, 0.501818, 1)
+debug_shape_custom_color = Color(0.0287937, 0.589722, 1, 1)
+script = ExtResource("13_5ejfk")
+boneName = "RightFoot"
 
-[node name="LeftFootAttachment" type="BoneAttachment3D" parent="PlayerBody/Model/Visuals/Rig/Skeleton"]
-transform = Transform3D(-1, 5.67701e-10, 8.28724e-10, 8.28725e-10, 4.46102e-07, 1, 5.677e-10, 1, -3.86497e-07, 0.089, 0.187, -0.0403526)
-bone_name = "LeftFoot"
-bone_idx = 47
-
-[node name="LeftDowncast" type="RayCast3D" parent="PlayerBody/Model/Visuals/Rig/Skeleton/LeftFootAttachment"]
-transform = Transform3D(1, 4.35036e-18, 0, 0, -4.37114e-08, -1, -6.32564e-18, 1, -4.37114e-08, 0, 8.56817e-08, 0.234191)
-target_position = Vector3(0, -0.5, 0)
-debug_shape_custom_color = Color(0.87451, 0, 0.501961, 1)
+[node name="LeftDowncast" type="RayCast3D" parent="PlayerBody/Model/Visuals/Rig/Skeleton"]
+transform = Transform3D(-0.99984, -0.0177689, 0.00217754, -0.0178886, 0.996356, -0.0833897, -0.000687861, -0.0834152, -0.996515, 0.0995616, 0.419083, -0.0199968)
+debug_shape_custom_color = Color(0.027451, 0.588235, 1, 1)
+script = ExtResource("13_5ejfk")
+boneName = "LeftFoot"
 
 [node name="Mannequin" type="MeshInstance3D" parent="PlayerBody/Model/Visuals/Rig"]
 mesh = SubResource("ArrayMesh_7vg33")
