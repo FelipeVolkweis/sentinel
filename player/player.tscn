@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=4 uid="uid://yxpgihmcjafi"]
+[gd_scene load_steps=55 format=4 uid="uid://yxpgihmcjafi"]
 
 [ext_resource type="Script" uid="uid://j8b0mb6i5g6l" path="res://player/player_body.gd" id="1_yw30f"]
 [ext_resource type="Resource" uid="uid://def3mva7m32tk" path="res://player/input/regular_3rd_person.tres" id="2_rgyib"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://df7j0ab7lmhoy" path="res://addons/libik/script/pole_bone_constraint.gd" id="12_5ejfk"]
 [ext_resource type="PackedScene" uid="uid://gll8qeabbqk2" path="res://camera/free_3rd_person/free_3rd_person.tscn" id="12_ebec5"]
 [ext_resource type="Script" uid="uid://c7dh0ixo2ce5s" path="res://player/ik/perpendicular_downcast.gd" id="13_5ejfk"]
+[ext_resource type="Script" uid="uid://c2bjuc1lm1sgl" path="res://player/ik/lower_hips_modifier.gd" id="14_jd2rm"]
 [ext_resource type="Script" uid="uid://bsft6kuoyojb8" path="res://player/actions/falling.gd" id="14_pnw6m"]
 [ext_resource type="AnimationLibrary" uid="uid://c8j0dmhdav7qt" path="res://assets/humanoid/walk/Walk_Root.glb" id="14_x7c3f"]
 [ext_resource type="Script" uid="uid://w1uc8y35hjmc" path="res://player/actions/landing.gd" id="15_1so5t"]
@@ -31,7 +32,7 @@
 [ext_resource type="Script" uid="uid://cy56jyf5shri6" path="res://addons/godot_state_charts/atomic_state.gd" id="22_g4c7l"]
 [ext_resource type="AnimationLibrary" uid="uid://b3ronohcurjtu" path="res://assets/humanoid/AnimationLibrary_Godot_Standard.glb" id="28_1so5t"]
 [ext_resource type="AnimationLibrary" uid="uid://cmavs5dl5dx87" path="res://assets/humanoid/jmp/Jump_B.glb" id="30_mmwog"]
-[ext_resource type="Script" uid="uid://cbbthcclsuv02" path="res://player/animation_player.gd" id="33_55jnj"]
+[ext_resource type="Script" uid="uid://cbbthcclsuv02" path="res://player/animator.gd" id="33_55jnj"]
 [ext_resource type="Script" uid="uid://dggl21qdyaciq" path="res://addons/godot_state_charts/expression_guard.gd" id="39_dx5ib"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kqu6x"]
@@ -774,7 +775,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0468884, 0)
 [node name="RightFootEffector" type="GodotIKEffector" parent="PlayerBody/Model/Visuals/Rig/Skeleton/GodotIK"]
 bone_idx = 51
 chain_length = 3
-transform_mode = 1
+transform_mode = 3
+transform = Transform3D(-1, -1.50996e-07, -6.60024e-15, 0, -4.37114e-08, 1, -1.50996e-07, 1, 4.37114e-08, 0, 0, 0)
 
 [node name="RightPoleBoneConstraint" type="GodotIKConstraint" parent="PlayerBody/Model/Visuals/Rig/Skeleton/GodotIK/RightFootEffector"]
 bone_idx = 50
@@ -785,8 +787,8 @@ metadata/_custom_type_script = "uid://df7j0ab7lmhoy"
 [node name="LeftFootEffector" type="GodotIKEffector" parent="PlayerBody/Model/Visuals/Rig/Skeleton/GodotIK"]
 bone_idx = 47
 chain_length = 3
-transform_mode = 1
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.106207, 0, 9.28492e-09)
+transform_mode = 3
+transform = Transform3D(-1, -1.50996e-07, -6.60024e-15, 0, -4.37114e-08, 1, -1.50996e-07, 1, 4.37114e-08, 0.106207, 0, 9.28492e-09)
 
 [node name="LeftPoleBoneConstraint" type="GodotIKConstraint" parent="PlayerBody/Model/Visuals/Rig/Skeleton/GodotIK/LeftFootEffector"]
 bone_idx = 46
@@ -796,7 +798,6 @@ metadata/_custom_type_script = "uid://df7j0ab7lmhoy"
 
 [node name="RightDowncast" type="RayCast3D" parent="PlayerBody/Model/Visuals/Rig/Skeleton"]
 transform = Transform3D(-0.995746, -0.0914565, 0.0111995, -0.0920713, 0.992311, -0.0827136, -0.00354866, -0.0833928, -0.99651, -0.0142784, 0.432972, -0.000447323)
-target_position = Vector3(0, -0.5, 0)
 debug_shape_custom_color = Color(0.0287937, 0.589722, 1, 1)
 script = ExtResource("13_5ejfk")
 boneName = "RightFoot"
@@ -806,6 +807,27 @@ transform = Transform3D(-0.99984, -0.0177689, 0.00217754, -0.0178886, 0.996356, 
 debug_shape_custom_color = Color(0.027451, 0.588235, 1, 1)
 script = ExtResource("13_5ejfk")
 boneName = "LeftFoot"
+
+[node name="LowerHipsModifier" type="SkeletonModifier3D" parent="PlayerBody/Model/Visuals/Rig/Skeleton"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+rotation_edit_mode = 0
+rotation_order = 2
+top_level = false
+visible = true
+visibility_parent = NodePath("")
+active = true
+influence = 1.0
+script = ExtResource("14_jd2rm")
+metadata/_custom_type_script = "uid://c2bjuc1lm1sgl"
 
 [node name="Mannequin" type="MeshInstance3D" parent="PlayerBody/Model/Visuals/Rig"]
 mesh = SubResource("ArrayMesh_7vg33")
